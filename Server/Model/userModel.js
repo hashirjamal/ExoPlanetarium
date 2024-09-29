@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bycrypt = require("bcrypt");
+const crypto = require("crypto");
 const userSchema = mongoose.Schema(
   {
     username: {
@@ -43,11 +44,14 @@ const userSchema = mongoose.Schema(
       default: true,
       select: false,
     },
+    passwordResetToken: String,
+    passwordResetTokenExpires: Date,
   },
   {
     timestamps: true,
   }
 );
+// instance methods
 // applying instance method for comparing password
 userSchema.methods.comparePasswordInDB = async function (
   password,
@@ -55,6 +59,17 @@ userSchema.methods.comparePasswordInDB = async function (
 ) {
   return await bycrypt.compare(password, encryptedPassword);
 };
+userSchema.methods.createResetPasswordToken = function () {
+  const resetToken = crypto.randomBytes(32).toString("hex");
+  const encryptedToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+  this.passwordResetToken = encryptedToken;
+  this.passwordResetTokenExpires = Date.now() + 10 * 1000 * 60;
+  return resetToken;
+};
+
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   // prevent from changing password repeatedly
