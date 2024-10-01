@@ -1,0 +1,46 @@
+@keyframes scaleUp {
+    0% {
+        transform: scale(0);
+        opacity: 0; 
+    }
+    100% {
+        transform: scale(1); 
+        opacity: 1; 
+    }
+}
+
+.modalBox {
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(6.5px);
+    -webkit-backdrop-filter: blur(6.5px);
+    border-radius: 10px;
+    color: #F5F5F5;
+    min-width: 70%;
+    max-width: 70%;
+    min-height: 80vh;
+    padding: 35px 50px;
+    opacity: 0;
+    transform: scale(0);
+    animation: scaleUp 1s forwards;
+}
+@media screen and (max-width: 576px){
+    .modalBox {
+        padding: 20px 30px;
+        min-width: 90%;
+        max-width: 90%;
+    }
+    
+}
+
+.background {
+    background-image: url('https://www.pixelstalk.net/wp-content/uploads/image10/Cool-4K-Space-wallpaper-with-a-beautiful-image-of-a-blue-ringed-planet-with-its-moons-set-against-a-deep-blue-starry-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
