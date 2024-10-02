@@ -1,117 +1,103 @@
 import { Html, OrbitControls } from "@react-three/drei";
-import gsap from "gsap";
-import { useRef, useState } from "react";
-import { useLoader, useThree } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
+import { TextureLoader, Vector3 } from "three";
+import React from "react";
+import * as THREE from "three";
 
-const Model = () => {
+const Model = React.forwardRef(({ onMove }, ref) => {
   const obj = useLoader(OBJLoader, "./object.obj");
-  const mat = useLoader(MTLLoader, "./material.mtl", {});
-};
+
+  const [baseMap, normalMap, roughnessMap, metallicMap] = useLoader(
+    TextureLoader,
+    [
+      "./textures/baseMap.png",
+      "./textures/normalMap.png",
+      "./textures/roughnessMap.png",
+      "./textures/metallicMap.png",
+    ]
+  );
+
+  useEffect(() => {
+    // Apply the textures to the model's meshes
+    obj.traverse((child) => {
+      if (child.isMesh) {
+        child.material.map = baseMap; // Base color (diffuse)
+        child.material.normalMap = normalMap; // Normal map for surface detail
+        child.material.roughnessMap = roughnessMap; // Roughness map for material shininess
+        child.material.metalnessMap = metallicMap; // Metalness map for metallic reflection
+        child.material.needsUpdate = true; // Ensure the material updates after setting the textures
+      }
+    });
+  }, [obj, baseMap, normalMap, roughnessMap, metallicMap]);
+
+  return (
+    <primitive
+      object={obj}
+      scale={1}
+      position={[-7, 0.5, 0]}
+      onClick={onMove} // Attach the click event
+      ref={ref} // Forward the ref to the primitive object
+      rotation={[0, 0, -Math.PI / 2]} // Rotate the model to face the camera
+    />
+  );
+});
 
 export default function Three() {
-  const [x, setX] = useState(-4); // Track x position
-  const sphereRef = useRef(); // Reference to the sphere (rocket)
-  const { camera } = useThree(); // Get camera from context
-  const originalCameraPosition = useRef([0, 2, 5]); // Store original camera position
+  const rocketRef = useRef(); // Ref to control the rocket's position
+  const { camera } = useThree();
 
-  const onMove = () => {
-    if (x >= 4) return setX(4);
-    const newX = x + 2; // Increment the x position
-
-    const timeline = gsap.timeline();
-
-    // Move the sphere
-    timeline.to(sphereRef.current.position, {
-      duration: 1,
-      x: newX,
-    });
-
-    // Move up
-    timeline.to(
-      sphereRef.current.position,
-      {
-        duration: 1,
-        y: 3,
-      },
-      "<" // Start this animation at the same time as the previous one
+  // Handle mouse move to get cursor position
+  const handleMouseMove = (event) => {
+    // Calculate mouse position in normalized device coordinates (-1 to +1)
+    const mouse = new Vector3(
+      (event.clientX / window.innerWidth) * 2 - 1,
+      -(event.clientY / window.innerHeight) * 2 + 1,
+      0 // Z position (not used here)
     );
 
-    // Camera follows the sphere
-    timeline.to(
-      camera.position,
-      {
-        duration: 1,
-        x: newX, // Match camera's x position to the sphere
-        y: 3, // Move camera up
-        z: 5, // Move camera away from the sphere
-        onUpdate: () => {
-          camera.lookAt(sphereRef.current.position); // Keep looking at the sphere
-        },
-      },
-      "<"
-    );
+    // Create a raycaster
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, camera);
 
-    // Move down
-    timeline.to(
-      sphereRef.current.position,
-      {
-        duration: 1,
-        y: 1,
-      },
-      "+=0.1" // Delay slightly before moving down
-    );
+    // Calculate objects intersecting the picking ray
+    const intersects = raycaster.intersectObjects(camera.children);
 
-    // Return camera to original position after sphere movement
-    // timeline.to(
-    //   camera.position,
-    //   {
-    //     duration: 1,
-    //     x: originalCameraPosition.current[0],
-    //     y: originalCameraPosition.current[1],
-    //     z: originalCameraPosition.current[2],
-    //     onUpdate: () => {
-    //       camera.lookAt(sphereRef.current.position); // Look at sphere while returning
-    //     },
-    //   },
-    //   "+=0.5" // Delay before returning the camera
-    // );
-
-    setX(newX); // Update the state
+    if (intersects.length > 0) {
+      // Move the rocket to just behind the cursor
+      const offset = 0.5; // Adjust this value to control how far behind the cursor the rocket should be
+      const targetPosition = intersects[0].point;
+      targetPosition.z -= offset; // Move the rocket behind the cursor in the Z direction
+      rocketRef.current.position.copy(targetPosition);
+    } else {
+      // If there's no intersection, keep the rocket in view
+      const targetPosition = new Vector3(
+        mouse.x * 10, // Scale cursor x to a suitable range
+        mouse.y * 10, // Scale cursor y to a suitable range
+        -2 // Set Z position behind the camera
+      );
+      rocketRef.current.position.copy(targetPosition);
+    }
   };
+
+  useEffect(() => {
+    // Add event listener for mouse move
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => {
+      // Clean up the event listener on unmount
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   return (
     <>
       <OrbitControls />
       <ambientLight intensity={0.5} />
       <directionalLight position={[0, 1, 5]} intensity={2} />
-      {/* Other boxes */}
-      <mesh position={[-4, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color="hotpink" />
-      </mesh>
-      <mesh position={[-2, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color="skyblue" />
-      </mesh>
-      <mesh position={[0, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color="skyblue" />
-      </mesh>
-      <mesh position={[2, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color="green" />
-      </mesh>
-      <mesh position={[4, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color="skyblue" />
-      </mesh>
-      {/* Rocket (Sphere) */}
-      <mesh position={[-4, 1, 0]} ref={sphereRef} onClick={onMove}>
-        <sphereGeometry args={[0.5, 32, 32]} />
-        <meshStandardMaterial attach="material" color="orange" />
-      </mesh>
+
+      {/* Rocket (Model) */}
+      <Model ref={rocketRef} onMove={() => {}} />
     </>
   );
 }
