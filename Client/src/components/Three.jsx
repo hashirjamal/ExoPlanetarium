@@ -1,10 +1,12 @@
-import { Html, OrbitControls } from "@react-three/drei";
+import { Html, OrbitControls, Stars } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { TextureLoader, Vector3 } from "three";
 import React from "react";
 import * as THREE from "three";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const Model = React.forwardRef(({ onMove }, ref) => {
   const obj = useLoader(OBJLoader, "./object.obj");
@@ -46,8 +48,9 @@ const Model = React.forwardRef(({ onMove }, ref) => {
 
 export default function Three() {
   const rocketRef = useRef(); // Ref to control the rocket's position
+  const starsRef = useRef(); // Ref for the stars component
   const { camera } = useThree();
-
+  const scrollSpeed = 0.07;
   // Handle mouse move to get cursor position
   const handleMouseMove = (event) => {
     // Calculate mouse position in normalized device coordinates (-1 to +1)
@@ -90,11 +93,35 @@ export default function Three() {
     };
   }, []);
 
+  // useEffect(() => {
+  //   // Animate stars with gsap
+  //   gsap.to(starsRef.current.position, {
+  //     x: -200, // Move stars to the left
+  //     duration: 20, // Duration of the animation
+  //     repeat: -1, // Repeat indefinitely
+  //     onRepeat: () => {
+  //       starsRef.current.position.x = 100; // Reset position after each repeat
+  //     },
+  //   });
+  // }, []);
+  useFrame(() => {
+    // Move stars slowly in the negative x direction
+    starsRef.current.position.x -= scrollSpeed;
+
+    // Reset stars position for a continuous loop
+    if (starsRef.current.position.x < -100) {
+      starsRef.current.position.x = 100; // Reset to the right side for an infinite effect
+    }
+  });
+
   return (
     <>
       <OrbitControls />
       <ambientLight intensity={0.5} />
       <directionalLight position={[0, 1, 5]} intensity={2} />
+
+      {/* Stars background */}
+      <Stars ref={starsRef} />
 
       {/* Rocket (Model) */}
       <Model ref={rocketRef} onMove={() => {}} />
