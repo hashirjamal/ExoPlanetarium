@@ -1,0 +1,19 @@
+.question{
+    font-size: 1.4rem;
+    text-align: justify;
+}
+.optionsContainer{
+    margin-top: 25px;
+}
+
+@media screen and (max-width: 768px){
+    .question{
+        font-size: 1.2rem;
+    }
+}
+@media screen and (max-width: 576px){
+    .question{
+        font-size: 1rem;
+    }
+}
+
