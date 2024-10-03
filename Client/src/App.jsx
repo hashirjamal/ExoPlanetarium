@@ -1,24 +1,11 @@
-import React, { Suspense } from "react";
-import Three from "./components/Three";
-import { Canvas } from "@react-three/fiber";
-import { Html } from "@react-three/drei";
-import BackgroundQuiz from "./components/BackgroundQuiz";
+import {Outlet} from "react-router-dom";
 
-const App = () => {
+function App() {
   return (
     <div>
-      <Canvas
-        id="cn"
-        style={{ width: "100%", height: "100vh" }}
-        camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 0, 5] }}
-      >
-        <Suspense fallback={null}>
-          <Three />
-        </Suspense>
-      </Canvas>
-      {/* <BackgroundQuiz /> */}
+      <Outlet />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
