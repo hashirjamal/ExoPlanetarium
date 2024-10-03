@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './QuizPage.module.css';
 import Questions from '../Quiz/components/Questions';
 import AfterQuiz from '../../components/AfterQuiz';
+import BackgroundQuiz from '../../components/BackgroundQuiz';
 
 const QuizPage = () => {
     const [counter, setCounter] = useState(0);
@@ -17,11 +18,15 @@ const QuizPage = () => {
 
     return (
       <>
-          <div className={styles.background}>
+          {/* <div className={styles.background}> */}
+          <BackgroundQuiz>
+          <div className={styles.background}> 
               <div className={styles.modalBox}>
                 <Questions counter={counter} setCounter={handleAnswerSelected} />
               </div>
-          </div>
+            </div>
+          </BackgroundQuiz>
+          {/* </div> */}
           {showAfterQuiz && <AfterQuiz />}
       </>
     );
