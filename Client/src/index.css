@@ -53,7 +53,7 @@ button:hover {
 }
 
 ::-webkit-scrollbar {
-  width: 18px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -61,6 +61,7 @@ button:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: url('../public/saturn.png') no-repeat center;
+  background: rgb(52, 52, 52) no-repeat center;
   background-size: contain;
+  border-radius: 50px;
 }
