@@ -7,11 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; /* added this 
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import styles from "./Card.module.css";
 
-const Card = ({ isLogin, setPass, params }) => {
+const Card = ({ isLogin, setPass, params, isSignUp }) => {
 
     let [loginInfo, setLogInfo] = useState({
         email: "",
-        password: ""
+        password: "",
+        user: ""
     });
     let [forgetEmail, setForgetEmail] = useState("");
     let [forgetPass, setForgetPass] = useState("");
@@ -85,9 +86,9 @@ const Card = ({ isLogin, setPass, params }) => {
     };
     return (
         <div>
-            <div className={styles.logincontainer}>
+            <div className={isSignUp? styles.signupcontainer : styles.logincontainer}>
                 <Typography variant='h4' style={{ fontSize: '1.5rem', textAlign: 'center', margin: '4px 0', color: '#00315e', marginBottom: '20px' }}>
-                    {isLogin ? 'Log In' : !setPass && 'Reset Password'}
+                    {isLogin ? 'Log In': isSignUp ? 'Sign Up' : !setPass && 'Reset Password'}
                 </Typography>
                 {alert.show && (
                     <div className={`${styles.alert} ${styles[alert.type]}`}>
@@ -105,7 +106,7 @@ const Card = ({ isLogin, setPass, params }) => {
                             <label htmlFor="password">Password</label>
                             <div id={styles.passBox}>
                                 <input type={pShow ? "text" : "password"} id='password' name='password' placeholder='Type your password' value={loginInfo.password} onChange={(e) => handleChange(e, "password")} />
-                                <FontAwesomeIcon icon={pShow ? faEyeSlash : faEye} onClick={() => setPShow(prev => !prev)} id={styles.toggle} />
+                                
                             </div>
                         </div>
                         <a className={styles.anchor} href="/forget-pass"><Typography variant='body2' styles={{ color: "#08457e", marginRight: '1rem' }}>Forgot Password?</Typography></a>
@@ -115,7 +116,28 @@ const Card = ({ isLogin, setPass, params }) => {
                         <button className={styles.btn} disabled={loading}>Log In</button>
                     </form>
                 )}
-                {!setPass && !isLogin && (
+                {isSignUp && !setPass && (
+                    <form className={styles.form} onSubmit={(e) => onLogin(e)}>
+                        <div className={styles.inpBox}>
+                            <label htmlFor="email">Email Address</label>
+                            <input type="email" id='email' name='email' placeholder='Type your e-mail address' value={loginInfo.email} onChange={(e) => handleChange(e, "email")} />
+                        </div>
+                        <div className={styles.inpBox}>
+                            <label htmlFor="text">User Name</label>
+                            <input type="text" id='user' name='user' placeholder='Type your user name' value={loginInfo.user} onChange={(e) => handleChange(e, "user")} />
+                        </div>
+                        <div className={styles.inpBox}>
+                            <label htmlFor="password">Password</label>
+                            <div id={styles.passBox}>
+                                <input type={pShow ? "text" : "password"} id='password' name='password' placeholder='Type your password' value={loginInfo.password} onChange={(e) => handleChange(e, "password")} />
+                                
+                            </div>
+                        </div> 
+                        <a className={styles.anchor} href="/forget-pass"><Typography variant='body2' styles={{ color: "#08457e", marginRight: '1rem' }}> Log In</Typography></a>
+                        <button style={{textAlign:"center"}} className={styles.btn} disabled={loading}>Sign Up</button>
+                    </form>
+                )}
+                {!setPass && !isLogin && !isSignUp && (
                     <form className={styles.form} onSubmit={(e) => onSendEmail(e)}>
                         <div className={styles.inpBox} style={{ borderBottom: 'none', margin: "1rem 0", textAlign: 'center', backgroundColor: '#e4e4fd', padding: '1rem', borderRadius: '8px' }}>
                             <Typography variant='body1'>

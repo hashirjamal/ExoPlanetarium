@@ -1,30 +1,39 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import SignIn from './Pages/LogInSignUp/SignIn.jsx';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
 import QuizPage from './Pages/Quiz/QuizPage.jsx';
+import Home from "./Pages/Home/Home.jsx";
+import LoginPage from "./Pages/LogInSignUp/LoginPage.jsx";
+import SignUp from './Pages/LogInSignUp/SignUp.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <LoginPage />
+  },
+  {
+    path: "/signup",
+    element: <SignUp />
+  },
+  {
+    path: "/",
+    element: <App />,
     children: [
       {
-        path: '/exoplanet-quiz',
-        element: <QuizPage />,
+        path: "/home",
+        element: <Home />,
       },
       {
-        path: '/login',
-        element: <SignIn />,
-      }
-    ]
+        path: "/exoplanet-quiz",
+        element: <QuizPage />,
+      },
+    ],
   },
-  
 ]);
 
 createRoot(document.getElementById('root')).render(

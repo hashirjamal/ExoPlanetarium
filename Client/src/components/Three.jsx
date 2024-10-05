@@ -46,12 +46,26 @@ const Model = React.forwardRef(({ onMove }, ref) => {
   );
 });
 
-export default function Three({move}) {
+export default function Three({ move, canvasKey }) {
   const rocketRef = useRef(); // Ref to control the rocket's position
   const starsRef = useRef(); // Ref for the stars component
 
   const makemake = useLoader(TextureLoader, "./planetsTextures/makemake.jpg");
   const miranda = useLoader(TextureLoader, "./planetsTextures/miranda.webp");
+  // const ceres = useLoader(TextureLoader, "./planetsTextures/ceres.jpg");
+  // const haumea = useLoader(TextureLoader, "./planetsTextures/haumea.jpg");
+  // const eris = useLoader(TextureLoader, "./planetsTextures/eris.jpg");
+  const planetTextures = [
+    useLoader(TextureLoader, "./planetsTextures/makemake.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/miranda.webp"),
+    useLoader(TextureLoader, "./planetsTextures/newplanet1.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/newplanet2.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/ceres.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/newplanet3.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/haumea.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/eris.jpg"),
+  ];
+  console.log(planetTextures);
 
   useGSAP(() => {
     if (rocketRef.current && move) {
@@ -113,6 +127,8 @@ export default function Three({move}) {
       );
     }
   }, [rocketRef, move]);
+  const texture1 = planetTextures[canvasKey % planetTextures.length];
+  const texture2 = planetTextures[(canvasKey + 1) % planetTextures.length];
   return (
     <>
       <OrbitControls />
@@ -124,13 +140,13 @@ export default function Three({move}) {
       {/* Left bottom planet */}
       <mesh position={[-4, -3, 0]}>
         <sphereGeometry args={[2.3, 32, 32]} />
-        <meshStandardMaterial map={makemake} />
+        <meshStandardMaterial map={texture1} />
       </mesh>
 
       {/* Right bottom planet */}
       <mesh position={[4, -3, 0]}>
         <sphereGeometry args={[2.3, 32, 32]} />
-        <meshStandardMaterial map={miranda} />
+        <meshStandardMaterial map={texture2} />
       </mesh>
 
       {/* Rocket (Model) */}
