@@ -46,7 +46,7 @@ const Model = React.forwardRef(({ onMove }, ref) => {
   );
 });
 
-export default function Three() {
+export default function Three({move}) {
   const rocketRef = useRef(); // Ref to control the rocket's position
   const starsRef = useRef(); // Ref for the stars component
 
@@ -54,8 +54,8 @@ export default function Three() {
   const miranda = useLoader(TextureLoader, "./planetsTextures/miranda.webp");
 
   useGSAP(() => {
-    if (rocketRef.current) {
-      const t1 = gsap.timeline();
+    if (rocketRef.current && move) {
+        const t1 = gsap.timeline();
 
       t1.to(rocketRef.current.position, {
         x: 3.8,
@@ -111,8 +111,8 @@ export default function Three() {
         },
         "<"
       );
-    }
-  }, [rocketRef]);
+    }       
+  }, [rocketRef, move]);
   return (
     <>
       <OrbitControls />

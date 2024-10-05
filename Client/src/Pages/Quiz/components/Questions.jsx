@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const Questions = ({ counter, setCounter }) => {
+const Questions = ({ counter, setCounter, setMove }) => {
   const [data, setData] = useState([]);
   const [fetching, setFetching] = useState(false);
   const [clicked, setClicked] = useState(false);
@@ -44,6 +44,7 @@ const Questions = ({ counter, setCounter }) => {
     const selectedOption = event.target.getAttribute("value");
     if (selectedOption === data[counter].correctOption) {
       event.target.style.backgroundColor = "rgba(0,255,0,0.5)";
+      setMove(true);
     } else {
       event.target.style.backgroundColor = "rgba(255,0,0,0.7)";
       event.target.style.color = "rgb(255,250,255)";
