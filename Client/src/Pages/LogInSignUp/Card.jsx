@@ -35,7 +35,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
         const { email, password } = loginInfo;
 
         try {
-            const response = await axios.post('http://localhost:3000/api/auth/signIn', { email, password });
+            const response = await axios.post('http://localhost:3000/api/auth/signIn', { email, password }, {withCredentials: true});
             console.log(response);
             setLoading(false);
             // showAlert(response.data.message, 'success');
@@ -46,7 +46,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
             }
         } catch (err) {
             setLoading(false);
-            showAlert(err.response.data.message, 'error');
+            // showAlert(err.response.data.message, 'error');
         }
     };
 
@@ -57,7 +57,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
         const { email, username, password } = loginInfo;
 
         try {
-            const response = await axios.post('http://localhost:3000/api/auth/signUp', { email, username, password });
+            const response = await axios.post('http://localhost:3000/api/auth/signUp', { email, username, password }, {withCredentials: true});
             console.log(response);
             setLoading(false);
             // showAlert(response.data.message, 'success');
@@ -68,7 +68,8 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
             // nav('/login'); // Change this to your target route
         } catch (err) {
             setLoading(false);
-            showAlert(err.response.data.message, 'error');
+            console.log(err);
+            // showAlert(err.response.data.message, 'error');
         }
     };
 
