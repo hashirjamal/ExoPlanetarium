@@ -39,7 +39,7 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed; */
-    /* min-height: 100vh; */
+    min-height: 100vh;
     position: absolute;
     top: 0;
     left: 0;
@@ -49,6 +49,9 @@
     justify-content: center;
     align-items: center;
     z-index: 12; 
+}
 
-    
+.heading{
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 5px;
 }
