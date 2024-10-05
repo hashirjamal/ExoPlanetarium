@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import './index.css'
 import QuizPage from './Pages/Quiz/QuizPage.jsx';
+import ChatbotPage from './Pages/Quiz/Chatbot/ChatbotPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: '/exoplanet-quiz',
         element: <QuizPage />,
+      },
+      {
+        path: '/chatbot',
+        element: <ChatbotPage />,
       }
     ]
   },
