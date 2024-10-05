@@ -66,7 +66,7 @@ const Questions = ({
         setMove(false);
       }, 9000);
       setScore((prevScore) => prevScore + 1);
-      setVal("Correct Answer!");
+      setVal("Correct Answer!\nRocket moves.");
     } else {
       event.target.style.backgroundColor = "rgba(255,0,0,0.7)";
       event.target.style.color = "rgb(255,250,255)";
