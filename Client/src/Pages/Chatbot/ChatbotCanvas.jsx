@@ -29,26 +29,11 @@ function RotatingMesh({ rotationSpeed, lightIntensity }) {
 }
 
 function    ChatbotCanvas({isSignUp}) {
-    const gui = useRef();
     const [rotationSpeed, setRotationSpeed] = useState(0.01);
     const [lightIntensity, setLightIntensity] = useState(1);
 
-    // useEffect(() => {
-    //     gui.current = new GUI();
-    //     gui.current.add({ rotationSpeed }, 'rotationSpeed', 0, 0.1).name('Rotation Speed').onChange(value => {
-    //         setRotationSpeed(value);
-    //     });
-    //     gui.current.add({ lightIntensity }, 'lightIntensity', 0, 2).name('Light Intensity').onChange(value => {
-    //         setLightIntensity(value);
-    //     });
-
-    //     return () => {
-    //         gui.current.destroy();
-    //     };
-    // }, []);
-
     return (
-        <Canvas style={{ width: "100%", height: "120vh" }} camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 0, 5] }}>
+        <Canvas style={{ width: "100%", height: "100vh" }} camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 0, 5] }}>
             <OrbitControls />
             <ambientLight intensity={0.5} />
             <Stars />
