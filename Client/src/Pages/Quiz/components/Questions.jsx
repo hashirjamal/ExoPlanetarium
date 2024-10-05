@@ -17,7 +17,16 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const Questions = ({counter,setCounter, setScore, setVal, setMove, modalRef}) => {
+const Questions = ({
+  counter,
+  setCounter,
+  setScore,
+  setVal,
+  setMove,
+  modalRef,
+  handlePage,
+  handleCanvasKey,
+}) => {
   const [data, setData] = useState([]);
   const [fetching, setFetching] = useState(false);
   const [clicked, setClicked] = useState(false);
@@ -47,16 +56,21 @@ const Questions = ({counter,setCounter, setScore, setVal, setMove, modalRef}) =>
       setTimeout(() => {
         modalRef.current.style.visibility = "hidden";
         setMove(true);
-    }, 2000);
+      }, 2000);
       setTimeout(() => {
         modalRef.current.style.visibility = "visible";
-      }, 8000);
+      }, 9500);
+      setTimeout(() => {
+        // handlePage();
+        handleCanvasKey();
+        setMove(false);
+      }, 9000);
       setScore((prevScore) => prevScore + 1);
-      setVal("Correct Answer!")
+      setVal("Correct Answer!");
     } else {
       event.target.style.backgroundColor = "rgba(255,0,0,0.7)";
       event.target.style.color = "rgb(255,250,255)";
-      setVal("Wrong Answer!")
+      setVal("Wrong Answer!");
     }
     const correctOptionValue = optionsRef.current.find(
       (item) => item.getAttribute("value") === data[counter].correctOption
@@ -68,7 +82,7 @@ const Questions = ({counter,setCounter, setScore, setVal, setMove, modalRef}) =>
       optionsRef.current.forEach((item) => {
         item.style.backgroundColor = "rgba(255,255,255,0.4)";
         item.style.color = "rgb(55, 55, 60)";
-      })
+      });
       setVal(undefined);
       setCounter((prevCounter) => prevCounter + 1);
     }, 2000);
@@ -84,7 +98,7 @@ const Questions = ({counter,setCounter, setScore, setVal, setMove, modalRef}) =>
     fontFamily: "'Lato', sans-serif",
     backgroundColor: "rgba(255,255,255,0.4)",
     borderRadius: "5px",
-    fontSize: "1.1rem",
+    fontSize: "1.3rem",
     pointerEvents: clicked ? "none" : "auto",
     transition: "all 0.3s",
     "&:hover": {

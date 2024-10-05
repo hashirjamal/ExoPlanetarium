@@ -1,0 +1,111 @@
+.loginPage {
+    background-image: url('https://www.pixelstalk.net/wp-content/uploads/image10/Cool-4K-Space-wallpaper-with-a-beautiful-image-of-a-blue-ringed-planet-with-its-moons-set-against-a-deep-blue-starry-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    padding: 6rem 2rem;
+    justify-content: center;
+
+    
+}
+.loginCard{
+    display: flex;
+    position: relative;
+    /* justify-content: space-between; */
+    width: 60vw;
+    background-color: #004f6c;
+    border-radius: 16px;
+}
+
+.logincontainer {
+    /* backdrop-filter: blur(5px); */
+    background-color: white;
+    box-shadow: 3px 6px #004f6c, 0 1px #004f6c;
+    /* margin: auto; */
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 1rem;
+    height: 100%;
+}
+
+#logo {
+    width: 60%;
+    height: 4rem;
+    margin: auto;
+    display: block;
+}
+
+.inpBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    width: 90%;
+    border-bottom: 1px solid black;
+}
+
+.inpBox label {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 400;
+    padding: 0.2rem;
+}
+
+input {
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 0.3rem;
+}
+
+#passBox {
+    width: 100%;
+    display: flex;
+    gap: 2px;
+}
+
+#toggle {
+    width: 1.5rem;
+    cursor: pointer;
+}
+
+select {
+    border: none;
+    outline: none;
+}
+
+.anchor {
+    color: #08457e;
+    text-align: right;
+    width: 90%;
+    display: block;
+    padding: 0.3rem 0;
+}
+
+.btn {
+    padding: 0.4rem 1rem;
+    margin: 1.8rem 0;
+    display: block;
+    width: 90%;
+    background: rgb(245, 230, 10);
+    background: linear-gradient(90deg, rgba(245, 230, 10, 0) 0%, rgba(60, 102, 223, 1) 0%, #00bde5 96%);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #004f6c; 
+}
+
+#form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

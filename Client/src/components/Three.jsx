@@ -1,10 +1,9 @@
 import { Html, OrbitControls, Stars } from "@react-three/drei";
-import { useEffect, useRef } from "react";
-import { useFrame, useLoader, useThree } from "@react-three/fiber";
+import { useEffect, useRef, useState } from "react";
+import { useLoader } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { TextureLoader, Vector3 } from "three";
+import { TextureLoader } from "three";
 import React from "react";
-import * as THREE from "three";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -22,14 +21,13 @@ const Model = React.forwardRef(({ onMove }, ref) => {
   );
 
   useEffect(() => {
-    // Apply the textures to the model's meshes
     obj.traverse((child) => {
       if (child.isMesh) {
-        child.material.map = baseMap; // Base color (diffuse)
-        child.material.normalMap = normalMap; // Normal map for surface detail
-        child.material.roughnessMap = roughnessMap; // Roughness map for material shininess
-        child.material.metalnessMap = metallicMap; // Metalness map for metallic reflection
-        child.material.needsUpdate = true; // Ensure the material updates after setting the textures
+        child.material.map = baseMap;
+        child.material.normalMap = normalMap;
+        child.material.roughnessMap = roughnessMap;
+        child.material.metalnessMap = metallicMap;
+        child.material.needsUpdate = true;
       }
     });
   }, [obj, baseMap, normalMap, roughnessMap, metallicMap]);
@@ -39,101 +37,69 @@ const Model = React.forwardRef(({ onMove }, ref) => {
       object={obj}
       scale={0.35}
       position={[-3.7, -0.75, 0]}
-      onClick={onMove} // Attach the click event
-      ref={ref} // Forward the ref to the primitive object
+      onClick={onMove}
+      ref={ref}
       rotation={[0, 0.5, 0]}
     />
   );
 });
 
-export default function Three({move}) {
-  const rocketRef = useRef(); // Ref to control the rocket's position
-  const starsRef = useRef(); // Ref for the stars component
+export default function Three({ move }) {
+  const rocketRef = useRef();
 
   const makemake = useLoader(TextureLoader, "./planetsTextures/makemake.jpg");
   const miranda = useLoader(TextureLoader, "./planetsTextures/miranda.webp");
 
   useGSAP(() => {
     if (rocketRef.current && move) {
-      const t1 = gsap.timeline();
-
-      t1.to(rocketRef.current.position, {
-        x: 3.8,
-        duration: 4,
-        ease: "power1.inOut",
-      });
-
-      t1.to(
-        rocketRef.current.position,
-        {
-          y: 1.5, // Move upwards
+        const t1 = gsap.timeline();
+        t1.to(rocketRef.current.position, {
+          x: 3.8,
           duration: 4,
           ease: "power1.inOut",
-        },
-        "<"
-      );
-
-      t1.to(
-        rocketRef.current.rotation,
-        {
+        })
+        .to(rocketRef.current.position, {
+          y: 1.5,
+          duration: 4,
+          ease: "power1.inOut",
+        }, "<")
+        .to(rocketRef.current.rotation, {
           z: -Math.PI / 2,
           duration: 4,
           ease: "power1.inOut",
-        },
-        "<"
-      );
-
-      t1.to(
-        rocketRef.current.rotation,
-        {
+        }, "<")
+        .to(rocketRef.current.rotation, {
           z: 0,
           duration: 2,
           ease: "power1.inOut",
-        },
-        "-=2"
-      );
-
-      t1.to(
-        rocketRef.current.position,
-        {
+        }, "-=2")
+        .to(rocketRef.current.position, {
           y: -0.72,
           duration: 2,
           ease: "power1.inOut",
-        },
-        "+=0.001"
-      );
-      t1.to(
-        rocketRef.current.rotation,
-        {
+        }, "+=0.001")
+        .to(rocketRef.current.rotation, {
           y: -0.5,
           duration: 2,
           ease: "power1.inOut",
-        },
-        "<"
-      );
+        }, "<");
     }
   }, [rocketRef, move]);
+
   return (
     <>
       <OrbitControls />
       <ambientLight intensity={0.5} />
       <directionalLight position={[0, 1, 5]} intensity={2} />
-
-      {/* Stars background */}
-      <Stars ref={starsRef} />
-      {/* Left bottom planet */}
+      <Stars />
       <mesh position={[-4, -3, 0]}>
         <sphereGeometry args={[2.3, 32, 32]} />
         <meshStandardMaterial map={makemake} />
       </mesh>
-
-      {/* Right bottom planet */}
       <mesh position={[4, -3, 0]}>
         <sphereGeometry args={[2.3, 32, 32]} />
         <meshStandardMaterial map={miranda} />
       </mesh>
-
-      {/* Rocket (Model) */}
       <Model ref={rocketRef} onMove={() => {}} />
     </>
   );
