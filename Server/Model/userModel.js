@@ -28,6 +28,9 @@ const userSchema = mongoose.Schema(
         message: "Password and confirm password does not match",
       },
     },
+    quizScore: {
+      type: Number
+    },
     role: {
       type: String,
       enum: ["user", "admin"],
@@ -43,6 +46,10 @@ const userSchema = mongoose.Schema(
       default: true,
       select: false,
     },
+    hiScore:{
+      type: Number,
+      default: 0
+    }
   },
   {
     timestamps: true,

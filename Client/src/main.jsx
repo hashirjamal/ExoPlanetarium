@@ -8,23 +8,39 @@ import {
 import './index.css'
 import QuizPage from './Pages/Quiz/QuizPage.jsx';
 import ChatbotPage from './Pages/Quiz/Chatbot/ChatbotPage.jsx';
+import Home from "./Pages/Home/Home.jsx";
+import LoginPage from "./Pages/LogInSignUp/LoginPage.jsx";
+import SignUp from './Pages/LogInSignUp/SignUp.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <LoginPage />
+  },
+  {
+    path: "/signup",
+    element: <SignUp />
+  },
+  {
+    path: "/",
+    element: <App />,
     children: [
       {
-        path: '/exoplanet-quiz',
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        path: "/exoplanet-quiz",
         element: <QuizPage />,
+      },
+    ],
       },
       {
         path: '/chatbot',
         element: <ChatbotPage />,
       }
-    ]
-  },
-  
+    
+  ,
 ]);
 
 createRoot(document.getElementById('root')).render(

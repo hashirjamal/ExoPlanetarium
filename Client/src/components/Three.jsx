@@ -46,20 +46,34 @@ const Model = React.forwardRef(({ onMove }, ref) => {
   );
 });
 
-export default function Three() {
+export default function Three({ move, canvasKey }) {
   const rocketRef = useRef(); // Ref to control the rocket's position
   const starsRef = useRef(); // Ref for the stars component
 
   const makemake = useLoader(TextureLoader, "./planetsTextures/makemake.jpg");
   const miranda = useLoader(TextureLoader, "./planetsTextures/miranda.webp");
+  // const ceres = useLoader(TextureLoader, "./planetsTextures/ceres.jpg");
+  // const haumea = useLoader(TextureLoader, "./planetsTextures/haumea.jpg");
+  // const eris = useLoader(TextureLoader, "./planetsTextures/eris.jpg");
+  const planetTextures = [
+    useLoader(TextureLoader, "./planetsTextures/makemake.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/miranda.webp"),
+    useLoader(TextureLoader, "./planetsTextures/newplanet1.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/newplanet2.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/ceres.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/newplanet3.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/haumea.jpg"),
+    useLoader(TextureLoader, "./planetsTextures/eris.jpg"),
+  ];
+  console.log(planetTextures);
 
   useGSAP(() => {
-    if (rocketRef.current) {
+    if (rocketRef.current && move) {
       const t1 = gsap.timeline();
 
       t1.to(rocketRef.current.position, {
         x: 3.8,
-        duration: 10,
+        duration: 4,
         ease: "power1.inOut",
       });
 
@@ -67,7 +81,7 @@ export default function Three() {
         rocketRef.current.position,
         {
           y: 1.5, // Move upwards
-          duration: 10,
+          duration: 4,
           ease: "power1.inOut",
         },
         "<"
@@ -77,7 +91,7 @@ export default function Three() {
         rocketRef.current.rotation,
         {
           z: -Math.PI / 2,
-          duration: 10,
+          duration: 4,
           ease: "power1.inOut",
         },
         "<"
@@ -87,10 +101,10 @@ export default function Three() {
         rocketRef.current.rotation,
         {
           z: 0,
-          duration: 5,
+          duration: 2,
           ease: "power1.inOut",
         },
-        "-=5"
+        "-=2"
       );
 
       t1.to(
@@ -100,7 +114,7 @@ export default function Three() {
           duration: 2,
           ease: "power1.inOut",
         },
-        "+=0.01"
+        "+=0.001"
       );
       t1.to(
         rocketRef.current.rotation,
@@ -112,7 +126,9 @@ export default function Three() {
         "<"
       );
     }
-  }, [rocketRef]);
+  }, [rocketRef, move]);
+  const texture1 = planetTextures[canvasKey % planetTextures.length];
+  const texture2 = planetTextures[(canvasKey + 1) % planetTextures.length];
   return (
     <>
       <OrbitControls />
@@ -124,13 +140,13 @@ export default function Three() {
       {/* Left bottom planet */}
       <mesh position={[-4, -3, 0]}>
         <sphereGeometry args={[2.3, 32, 32]} />
-        <meshStandardMaterial map={makemake} />
+        <meshStandardMaterial map={texture1} />
       </mesh>
 
       {/* Right bottom planet */}
       <mesh position={[4, -3, 0]}>
         <sphereGeometry args={[2.3, 32, 32]} />
-        <meshStandardMaterial map={miranda} />
+        <meshStandardMaterial map={texture2} />
       </mesh>
 
       {/* Rocket (Model) */}

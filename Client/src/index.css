@@ -11,14 +11,6 @@
 #cn{
   /* position: relative; */
   background-color: black;
-
-
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 .wrapper {
@@ -41,4 +33,18 @@
   width: 200px;
   height: 200px;
   background-color: aquamarine;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(52, 52, 52) no-repeat center;
+  background-size: contain;
+  border-radius: 50px;
 }
