@@ -17,7 +17,6 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-
 const Questions = ({counter,setCounter, setScore, setVal, setMove, modalRef}) => {
   const [data, setData] = useState([]);
   const [fetching, setFetching] = useState(false);
