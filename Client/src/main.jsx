@@ -8,7 +8,7 @@ import {
 import './index.css'
 import QuizPage from './Pages/Quiz/QuizPage.jsx';
 import Home from "./Pages/Home/Home.jsx";
-// import SignIn from "./Pages/LogInSignUp/SignIn.jsx";
+import LoginPage from "./Pages/LogInSignUp/LoginPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,10 +19,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      // {
-      //   path: "/login",
-      //   element: <SignIn />
-      // },
+      {
+        path: "/login",
+        element: <LoginPage />
+      },
       {
         path: "/exoplanet-quiz",
         element: <QuizPage />,
