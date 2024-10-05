@@ -43,6 +43,10 @@ const userSchema = mongoose.Schema(
       default: true,
       select: false,
     },
+    hiScore:{
+      type: Number,
+      default: 0
+    }
   },
   {
     timestamps: true,
