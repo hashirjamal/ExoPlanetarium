@@ -35,7 +35,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
         const { email, password } = loginInfo;
 
         try {
-            const response = await axios.post('http://localhost:3000/api/auth/signIn/', { email, password });
+            const response = await axios.post('http://localhost:3000/api/auth/signIn', { email, password });
             setLoading(false);
             showAlert(response.data.message, 'success');
             // You can navigate to the dashboard or another page after login
@@ -53,7 +53,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
         const { email, username, password } = loginInfo;
 
         try {
-            const response = await axios.post('http://localhost:3000/api/auth/signUp/', { email, username, password });
+            const response = await axios.post('http://localhost:3000/api/auth/signUp', { email, username, password });
             setLoading(false);
             showAlert(response.data.message, 'success');
             // Optionally navigate to login or dashboard
@@ -108,6 +108,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
         setLogInfo(prev => {
             const obj = { ...prev };
             obj[key] = val;
+            console.log(`${key}: ${val}`);
             return obj;
         });
     };
@@ -154,7 +155,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
                         </div>
                         <div className={styles.inpBox}>
                             <label htmlFor="text">User Name</label>
-                            <input type="text" id='user' name='user' placeholder='Type your user name' value={loginInfo.user} onChange={(e) => handleChange(e, "user")} />
+                            <input type="text" id='username' name='username' placeholder='Type your user name' value={loginInfo.username} onChange={(e) => handleChange(e, "username")} />
                         </div>
                         <div className={styles.inpBox}>
                             <label htmlFor="password">Password</label>
