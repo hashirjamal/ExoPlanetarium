@@ -34,13 +34,24 @@
 }
 
 .background {
-    background-image: url('https://www.pixelstalk.net/wp-content/uploads/image10/Cool-4K-Space-wallpaper-with-a-beautiful-image-of-a-blue-ringed-planet-with-its-moons-set-against-a-deep-blue-starry-background.jpg');
+    /* background-image: url('https://www.pixelstalk.net/wp-content/uploads/image10/Cool-4K-Space-wallpaper-with-a-beautiful-image-of-a-blue-ringed-planet-with-its-moons-set-against-a-deep-blue-starry-background.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: fixed; */
     min-height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 12; 
+}
+
+.heading{
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 5px;
 }

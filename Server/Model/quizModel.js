@@ -1,7 +1,7 @@
 
 const mongoose = require("mongoose");
 const validator = require("validator");
-const bycrypt = require("bcrypt");
+const bycrypt = require("bcryptjs");
 const quizQuestionSchema = mongoose.Schema({
   question: {
     type: String,

@@ -1,117 +1,140 @@
-import { Html, OrbitControls } from "@react-three/drei";
-import gsap from "gsap";
-import { useRef, useState } from "react";
-import { useLoader, useThree } from "@react-three/fiber";
+import { Html, OrbitControls, Stars } from "@react-three/drei";
+import { useEffect, useRef } from "react";
+import { useFrame, useLoader, useThree } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-import { MTLLoader } from "three/examples/jsm/loaders/MTLLoader";
+import { TextureLoader, Vector3 } from "three";
+import React from "react";
+import * as THREE from "three";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
-const Model = () => {
+const Model = React.forwardRef(({ onMove }, ref) => {
   const obj = useLoader(OBJLoader, "./object.obj");
-  const mat = useLoader(MTLLoader, "./material.mtl", {});
-};
 
-export default function Three() {
-  const [x, setX] = useState(-4); // Track x position
-  const sphereRef = useRef(); // Reference to the sphere (rocket)
-  const { camera } = useThree(); // Get camera from context
-  const originalCameraPosition = useRef([0, 2, 5]); // Store original camera position
+  const [baseMap, normalMap, roughnessMap, metallicMap] = useLoader(
+    TextureLoader,
+    [
+      "./textures/baseMap.png",
+      "./textures/normalMap.png",
+      "./textures/roughnessMap.png",
+      "./textures/metallicMap.png",
+    ]
+  );
 
-  const onMove = () => {
-    if (x >= 4) return setX(4);
-    const newX = x + 2; // Increment the x position
-
-    const timeline = gsap.timeline();
-
-    // Move the sphere
-    timeline.to(sphereRef.current.position, {
-      duration: 1,
-      x: newX,
+  useEffect(() => {
+    // Apply the textures to the model's meshes
+    obj.traverse((child) => {
+      if (child.isMesh) {
+        child.material.map = baseMap; // Base color (diffuse)
+        child.material.normalMap = normalMap; // Normal map for surface detail
+        child.material.roughnessMap = roughnessMap; // Roughness map for material shininess
+        child.material.metalnessMap = metallicMap; // Metalness map for metallic reflection
+        child.material.needsUpdate = true; // Ensure the material updates after setting the textures
+      }
     });
+  }, [obj, baseMap, normalMap, roughnessMap, metallicMap]);
 
-    // Move up
-    timeline.to(
-      sphereRef.current.position,
-      {
-        duration: 1,
-        y: 3,
-      },
-      "<" // Start this animation at the same time as the previous one
-    );
+  return (
+    <primitive
+      object={obj}
+      scale={0.35}
+      position={[-3.7, -0.75, 0]}
+      onClick={onMove} // Attach the click event
+      ref={ref} // Forward the ref to the primitive object
+      rotation={[0, 0.5, 0]}
+    />
+  );
+});
 
-    // Camera follows the sphere
-    timeline.to(
-      camera.position,
-      {
-        duration: 1,
-        x: newX, // Match camera's x position to the sphere
-        y: 3, // Move camera up
-        z: 5, // Move camera away from the sphere
-        onUpdate: () => {
-          camera.lookAt(sphereRef.current.position); // Keep looking at the sphere
+export default function Three({move}) {
+  const rocketRef = useRef(); // Ref to control the rocket's position
+  const starsRef = useRef(); // Ref for the stars component
+
+  const makemake = useLoader(TextureLoader, "./planetsTextures/makemake.jpg");
+  const miranda = useLoader(TextureLoader, "./planetsTextures/miranda.webp");
+
+  useGSAP(() => {
+    if (rocketRef.current && move) {
+      const t1 = gsap.timeline();
+
+      t1.to(rocketRef.current.position, {
+        x: 3.8,
+        duration: 4,
+        ease: "power1.inOut",
+      });
+
+      t1.to(
+        rocketRef.current.position,
+        {
+          y: 1.5, // Move upwards
+          duration: 4,
+          ease: "power1.inOut",
         },
-      },
-      "<"
-    );
+        "<"
+      );
 
-    // Move down
-    timeline.to(
-      sphereRef.current.position,
-      {
-        duration: 1,
-        y: 1,
-      },
-      "+=0.1" // Delay slightly before moving down
-    );
+      t1.to(
+        rocketRef.current.rotation,
+        {
+          z: -Math.PI / 2,
+          duration: 4,
+          ease: "power1.inOut",
+        },
+        "<"
+      );
 
-    // Return camera to original position after sphere movement
-    // timeline.to(
-    //   camera.position,
-    //   {
-    //     duration: 1,
-    //     x: originalCameraPosition.current[0],
-    //     y: originalCameraPosition.current[1],
-    //     z: originalCameraPosition.current[2],
-    //     onUpdate: () => {
-    //       camera.lookAt(sphereRef.current.position); // Look at sphere while returning
-    //     },
-    //   },
-    //   "+=0.5" // Delay before returning the camera
-    // );
+      t1.to(
+        rocketRef.current.rotation,
+        {
+          z: 0,
+          duration: 2,
+          ease: "power1.inOut",
+        },
+        "-=2"
+      );
 
-    setX(newX); // Update the state
-  };
-
+      t1.to(
+        rocketRef.current.position,
+        {
+          y: -0.72,
+          duration: 2,
+          ease: "power1.inOut",
+        },
+        "+=0.001"
+      );
+      t1.to(
+        rocketRef.current.rotation,
+        {
+          y: -0.5,
+          duration: 2,
+          ease: "power1.inOut",
+        },
+        "<"
+      );
+    }
+  }, [rocketRef, move]);
   return (
     <>
       <OrbitControls />
       <ambientLight intensity={0.5} />
       <directionalLight position={[0, 1, 5]} intensity={2} />
-      {/* Other boxes */}
-      <mesh position={[-4, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color="hotpink" />
+
+      {/* Stars background */}
+      <Stars ref={starsRef} />
+      {/* Left bottom planet */}
+      <mesh position={[-4, -3, 0]}>
+        <sphereGeometry args={[2.3, 32, 32]} />
+        <meshStandardMaterial map={makemake} />
       </mesh>
-      <mesh position={[-2, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color="skyblue" />
+
+      {/* Right bottom planet */}
+      <mesh position={[4, -3, 0]}>
+        <sphereGeometry args={[2.3, 32, 32]} />
+        <meshStandardMaterial map={miranda} />
       </mesh>
-      <mesh position={[0, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color="skyblue" />
-      </mesh>
-      <mesh position={[2, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color="green" />
-      </mesh>
-      <mesh position={[4, 0, 0]}>
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial attach="material" color="skyblue" />
-      </mesh>
-      {/* Rocket (Sphere) */}
-      <mesh position={[-4, 1, 0]} ref={sphereRef} onClick={onMove}>
-        <sphereGeometry args={[0.5, 32, 32]} />
-        <meshStandardMaterial attach="material" color="orange" />
-      </mesh>
+
+      {/* Rocket (Model) */}
+      <Model ref={rocketRef} onMove={() => {}} />
     </>
   );
 }
