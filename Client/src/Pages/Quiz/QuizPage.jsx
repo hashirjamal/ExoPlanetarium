@@ -1,6 +1,6 @@
 import { Suspense, useRef, useState } from 'react';
 import styles from './QuizPage.module.css';
-import Questions from '../Quiz/components/Questions';
+import Questions from '../Quiz/components/Questions;
 import AfterQuiz from '../../components/AfterQuiz';
 import BackgroundQuiz from '../../components/BackgroundQuiz';
 import Stats from './components/Stats';
@@ -8,6 +8,7 @@ import { Canvas } from '@react-three/fiber';
 import Three from '../../components/Three';
 
 const QuizPage = () => {
+  const modalRef = useRef(true);
     const [counter, setCounter] = useState(0);
     const [move, setMove] = useState(false);
     const modalRef = useRef(true);
@@ -24,7 +25,6 @@ const QuizPage = () => {
             setCounter(prev => prev + 1);
         }, 1000);
     };
-
     return (
       <>
         <Canvas

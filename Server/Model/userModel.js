@@ -28,6 +28,9 @@ const userSchema = mongoose.Schema(
         message: "Password and confirm password does not match",
       },
     },
+    quizScore: {
+      type: Number
+    },
     role: {
       type: String,
       enum: ["user", "admin"],
@@ -37,12 +40,7 @@ const userSchema = mongoose.Schema(
       type: String,
       default:
         "https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3407.jpg?w=740",
-    },
-    active: {
-      type: Boolean,
-      default: true,
-      select: false,
-    },
+    }
   },
   {
     timestamps: true,
