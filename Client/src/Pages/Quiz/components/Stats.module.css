@@ -1,0 +1,30 @@
+@keyframes scaleUp {
+    0% {
+        transform: scale(0);
+        opacity: 0; 
+    }
+    100% {
+        transform: scale(1); 
+        opacity: 1; 
+    }
+}
+
+
+.score{
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    margin-top: 5px;
+}
+
+.answerIndicator{
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: scaleUp 1s forwards;
+    opacity: 0;
+    transform: scale(0);
+}

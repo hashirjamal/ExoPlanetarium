@@ -1,19 +1,30 @@
 import { Suspense, useRef, useState } from 'react';
 import styles from './QuizPage.module.css';
-import Questions from '../Quiz/components/Questions';
-// import AfterQuiz from '../../components/AfterQuiz';
-// import BackgroundQuiz from '../../components/BackgroundQuiz';
-import Three from '../../components/Three';
+import Questions from '../Quiz/components/Questions;
+import AfterQuiz from '../../components/AfterQuiz';
+import BackgroundQuiz from '../../components/BackgroundQuiz';
+import Stats from './components/Stats';
 import { Canvas } from '@react-three/fiber';
+import Three from '../../components/Three';
 
 const QuizPage = () => {
   const modalRef = useRef(true);
     const [counter, setCounter] = useState(0);
-    // const [showAfterQuiz, setShowAfterQuiz] = useState(false);
     const [move, setMove] = useState(false);
-    const [modalShown, setModalShown] = useState(true);
+    const modalRef = useRef(true);
+    const [score, setScore] = useState(0);
+    const [showAfterQuiz, setShowAfterQuiz] = useState(false);
+    const [val,setVal] = useState(undefined);
+    // const modal = useRef(null);
 
 
+    const handleAnswerSelected = () => {
+        // setShowAfterQuiz(true);
+        setTimeout(() => {
+            // setShowAfterQuiz(false);
+            setCounter(prev => prev + 1);
+        }, 1000);
+    };
     return (
       <>
         <Canvas
@@ -25,9 +36,11 @@ const QuizPage = () => {
           <Three move={move} />
         </Suspense>
       </Canvas>
-          <div ref={modalRef} className={styles.background}> 
-              <div className={styles.modalBox}>
-                <Questions counter={counter} setMove={setMove} setCounter={setCounter} modalRef={modalRef} />
+          <div ref={modalRef} className={styles.background}>
+              <div className={styles.modalBox} >
+                <h1 className={styles.heading}>Question No. {counter+1}</h1>
+                <Questions counter={counter} setCounter={handleAnswerSelected} setMove={setMove} setScore={setScore} setVal={setVal} modalRef={modalRef}/>
+                <Stats val={val} score={score}></Stats>
               </div>
             </div>
       </>

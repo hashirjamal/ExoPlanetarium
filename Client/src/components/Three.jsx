@@ -55,11 +55,11 @@ export default function Three({move}) {
 
   useGSAP(() => {
     if (rocketRef.current && move) {
-        const t1 = gsap.timeline();
+      const t1 = gsap.timeline();
 
       t1.to(rocketRef.current.position, {
         x: 3.8,
-        duration: 10,
+        duration: 4,
         ease: "power1.inOut",
       });
 
@@ -67,7 +67,7 @@ export default function Three({move}) {
         rocketRef.current.position,
         {
           y: 1.5, // Move upwards
-          duration: 10,
+          duration: 4,
           ease: "power1.inOut",
         },
         "<"
@@ -77,7 +77,7 @@ export default function Three({move}) {
         rocketRef.current.rotation,
         {
           z: -Math.PI / 2,
-          duration: 10,
+          duration: 4,
           ease: "power1.inOut",
         },
         "<"
@@ -87,10 +87,10 @@ export default function Three({move}) {
         rocketRef.current.rotation,
         {
           z: 0,
-          duration: 5,
+          duration: 2,
           ease: "power1.inOut",
         },
-        "-=5"
+        "-=2"
       );
 
       t1.to(
@@ -100,7 +100,7 @@ export default function Three({move}) {
           duration: 2,
           ease: "power1.inOut",
         },
-        "+=0.01"
+        "+=0.001"
       );
       t1.to(
         rocketRef.current.rotation,
@@ -111,7 +111,7 @@ export default function Three({move}) {
         },
         "<"
       );
-    }       
+    }
   }, [rocketRef, move]);
   return (
     <>
