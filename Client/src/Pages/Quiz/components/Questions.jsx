@@ -17,7 +17,7 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-const Questions = ({counter,setCounter}) => {
+const Questions = ({ counter, setCounter }) => {
   const [data, setData] = useState([]);
   const [fetching, setFetching] = useState(false);
   const [clicked, setClicked] = useState(false);
@@ -58,8 +58,8 @@ const Questions = ({counter,setCounter}) => {
       optionsRef.current.forEach((item) => {
         item.style.backgroundColor = "rgba(255,255,255,0.4)";
         item.style.color = "rgb(55, 55, 60)";
-      })
-      
+      });
+
       setCounter((prevCounter) => prevCounter + 1);
     }, 2000);
   };
