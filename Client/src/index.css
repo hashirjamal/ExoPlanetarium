@@ -1,3 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
 *{
   margin: 0;
   padding: 0;
@@ -7,21 +13,13 @@
 #cn{
   /* position: relative; */
   background-color: black;
-
-
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 .wrapper {
   position: relative;
 }
 
-
+/* 
 button {
   background-color: #4caf50;
   color: white;
@@ -37,7 +35,7 @@ button {
 }
 button:hover {
   background-color: red;
-}
+} */
 
 .hide-cursor {
   position: absolute;
@@ -52,4 +50,17 @@ button:hover {
   width: 200px;
   height: 200px;
   background-color: aquamarine;
+}
+
+::-webkit-scrollbar {
+  width: 18px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: url('../public/saturn.png') no-repeat center;
+  background-size: contain;
 }

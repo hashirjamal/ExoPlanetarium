@@ -7,19 +7,23 @@ import {
 } from "react-router-dom";
 import './index.css'
 import QuizPage from './Pages/Quiz/QuizPage.jsx';
+import Home from "./Pages/Home/Home.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
     children: [
       {
-        path: '/exoplanet-quiz',
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/exoplanet-quiz",
         element: <QuizPage />,
-      }
-    ]
+      },
+    ],
   },
-  
 ]);
 
 createRoot(document.getElementById('root')).render(
