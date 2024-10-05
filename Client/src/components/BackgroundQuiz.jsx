@@ -14,4 +14,4 @@ const BackgroundQuiz = ({ children }) => {
   );
 };
 
-export default BackgroundQuiz;
+// export default BackgroundQuiz;

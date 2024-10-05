@@ -1,8 +1,18 @@
+<<<<<<< HEAD
 import { useState } from "react";
 import styles from "./QuizPage.module.css";
 import Questions from "../Quiz/components/Questions";
 import AfterQuiz from "../../components/AfterQuiz";
 import BackgroundQuiz from "../../components/BackgroundQuiz";
+=======
+import { Suspense, useState } from 'react';
+import styles from './QuizPage.module.css';
+import Questions from '../Quiz/components/Questions';
+// import AfterQuiz from '../../components/AfterQuiz';
+// import BackgroundQuiz from '../../components/BackgroundQuiz';
+import Three from '../../components/Three';
+import { Canvas } from '@react-three/fiber';
+>>>>>>> b7c1a328f7e6776743e9d3f2363a087455da2911
 
 const QuizPage = () => {
   const [counter, setCounter] = useState(0);
@@ -16,6 +26,7 @@ const QuizPage = () => {
     }, 19000);
   };
 
+<<<<<<< HEAD
   return (
     <>
       {/* <div className={styles.background}> */}
@@ -31,5 +42,26 @@ const QuizPage = () => {
     </>
   );
 };
+=======
+    return (
+      <>
+        <Canvas
+        id="cn"
+        style={{ width: "100%", height: "100vh" }} // Ensure canvas takes full width and height
+        camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 0, 5] }}
+      >
+        <Suspense fallback={null}>
+          <Three />
+        </Suspense>
+      </Canvas>
+          <div className={styles.background}> 
+              <div className={styles.modalBox}>
+                <Questions counter={counter} setCounter={handleAnswerSelected} />
+              </div>
+            </div>
+      </>
+    );
+}
+>>>>>>> b7c1a328f7e6776743e9d3f2363a087455da2911
 
 export default QuizPage;
