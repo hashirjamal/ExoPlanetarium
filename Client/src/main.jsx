@@ -9,19 +9,24 @@ import './index.css'
 import QuizPage from './Pages/Quiz/QuizPage.jsx';
 import Home from "./Pages/Home/Home.jsx";
 import LoginPage from "./Pages/LogInSignUp/LoginPage.jsx";
+import SignUp from './Pages/LogInSignUp/SignUp.jsx';
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LoginPage />
+  },
+  {
+    path: "/signup",
+    element: <SignUp />
+  },
   {
     path: "/",
     element: <App />,
     children: [
       {
-        path: "/",
+        path: "/home",
         element: <Home />,
-      },
-      {
-        path: "/login",
-        element: <LoginPage />
       },
       {
         path: "/exoplanet-quiz",

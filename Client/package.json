@@ -22,6 +22,7 @@
     "aos": "^3.0.0-beta.6",
     "axios": "^1.7.7",
     "gsap": "^3.12.5",
+    "lil-gui": "^0.19.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-loader-spinner": "^6.1.6",
