@@ -1,8 +1,30 @@
+.loginPage {
+    background-image: url('https://www.pixelstalk.net/wp-content/uploads/image10/Cool-4K-Space-wallpaper-with-a-beautiful-image-of-a-blue-ringed-planet-with-its-moons-set-against-a-deep-blue-starry-background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    padding: 6rem 2rem;
+    justify-content: center;
+
+    
+}
+.loginCard{
+    display: flex;
+    position: relative;
+    /* justify-content: space-between; */
+    width: 60vw;
+    background-color: #004f6c;
+    border-radius: 16px;
+}
+
 .logincontainer {
-    /* backdrop-filter: blur(5px); */
+    backdrop-filter: blur(5px);
     background-color: white;
     box-shadow: 3px 6px #004f6c, 0 1px #004f6c;
-    /* margin: auto; */
+    margin: auto;
     box-sizing: border-box;
     border-radius: 15px;
     padding: 1rem;

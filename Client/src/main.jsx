@@ -12,16 +12,16 @@ import LoginPage from "./Pages/LogInSignUp/LoginPage.jsx";
 
 const router = createBrowserRouter([
   {
+    path: "/login",
+    element: <LoginPage />
+  },
+  {
     path: "/",
     element: <App />,
     children: [
       {
         path: "/",
         element: <Home />,
-      },
-      {
-        path: "/login",
-        element: <LoginPage />
       },
       {
         path: "/exoplanet-quiz",
