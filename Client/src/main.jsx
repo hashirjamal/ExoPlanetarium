@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
+import SignIn from './Pages/LogInSignUp/SignIn.jsx';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
       {
         path: '/exoplanet-quiz',
         element: <QuizPage />,
+      },
+      {
+        path: '/login',
+        element: <SignIn />,
       }
     ]
   },

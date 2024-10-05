@@ -22,7 +22,7 @@
 }
 
 
-button {
+/* button {
   background-color: #4caf50;
   color: white;
   padding: 14px 20px;
@@ -37,7 +37,7 @@ button {
 }
 button:hover {
   background-color: red;
-}
+} */
 
 .hide-cursor {
   position: absolute;
