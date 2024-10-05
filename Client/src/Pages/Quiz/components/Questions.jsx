@@ -41,10 +41,10 @@ const Questions = ({counter,setCounter,setMove}) => {
 
   const checkAnswer = (event) => {
     setClicked(true);
-    setMove(true);
     const selectedOption = event.target.getAttribute("value");
     if (selectedOption === data[counter].correctOption) {
       event.target.style.backgroundColor = "rgba(0,255,0,0.5)";
+      setMove(true);
     } else {
       event.target.style.backgroundColor = "rgba(255,0,0,0.7)";
       event.target.style.color = "rgb(255,250,255)";
