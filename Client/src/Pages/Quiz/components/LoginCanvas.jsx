@@ -1,4 +1,3 @@
-
 import { OrbitControls, Stars, Html } from "@react-three/drei";
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { Suspense, useEffect, useRef, useState } from "react";
