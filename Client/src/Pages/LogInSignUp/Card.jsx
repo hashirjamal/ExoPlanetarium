@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { Typography } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ThreeDots } from "react-loader-spinner";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -36,10 +36,14 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
 
         try {
             const response = await axios.post('http://localhost:3000/api/auth/signIn', { email, password });
+            console.log(response);
             setLoading(false);
-            showAlert(response.data.message, 'success');
-            // You can navigate to the dashboard or another page after login
-            // nav('/dashboard'); // Change this to your target route
+            // showAlert(response.data.message, 'success');
+            console.log(response.data.status);
+
+            if(response.data.status === "success"){
+                nav("/home");
+            }
         } catch (err) {
             setLoading(false);
             showAlert(err.response.data.message, 'error');
@@ -54,8 +58,12 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
 
         try {
             const response = await axios.post('http://localhost:3000/api/auth/signUp', { email, username, password });
+            console.log(response);
             setLoading(false);
-            showAlert(response.data.message, 'success');
+            // showAlert(response.data.message, 'success');
+            if(response.data.status === "success"){
+                nav("/");
+            }
             // Optionally navigate to login or dashboard
             // nav('/login'); // Change this to your target route
         } catch (err) {
@@ -138,9 +146,12 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
                                 <FontAwesomeIcon icon={pShow ? faEyeSlash : faEye} onClick={() => setPShow(prev => !prev)} id={styles.toggle} />
                             </div>
                         </div>
-                        <a className={styles.anchor} href="/forget-pass">
+                        <Link className={styles.anchor} to="/signup">
+                            <Typography variant='body2' styles={{ color: "#08457e", marginRight: '1rem' }}>Create an account</Typography>
+                        </Link>
+                        {/* <a className={styles.anchor} href="/forget-pass">
                             <Typography variant='body2' styles={{ color: "#08457e", marginRight: '1rem' }}>Forgot Password?</Typography>
-                        </a>
+                        </a> */}
                         <div className={styles.loaderContainer}>
                             {loading && <ThreeDots type="ThreeDots" color="#00315e" height={30} width={30} />}
                         </div>
@@ -164,9 +175,9 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
                                 <FontAwesomeIcon icon={pShow ? faEyeSlash : faEye} onClick={() => setPShow(prev => !prev)} id={styles.toggle} />
                             </div>
                         </div> 
-                        <a className={styles.anchor} href="/forget-pass">
+                        <Link className={styles.anchor} to="/">
                             <Typography variant='body2' styles={{ color: "#08457e", marginRight: '1rem' }}>Log In</Typography>
-                        </a>
+                        </Link>
                         <button style={{ textAlign: "center" }} className={styles.btn} disabled={loading}>Sign Up</button>
                     </form>
                 )}
@@ -181,9 +192,9 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
                             <label htmlFor="email">Email Address</label>
                             <input type="email" id='email' name='email' placeholder='Type your e-mail address' value={forgetEmail} onChange={(e) => setForgetEmail(e.target.value)} />
                         </div>
-                        <a className={styles.anchor} href="/">
+                        <Link className={styles.anchor} to="/">
                             <Typography variant='body2' styles={{ color: "#08457e", marginRight: '1rem' }}>Back to Log In</Typography>
-                        </a>
+                        </Link>
                         <div className={styles.loaderContainer}>
                             {loading && <ThreeDots type="ThreeDots" color="#00315e" height={30} width={30} />}
                         </div>
