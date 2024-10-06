@@ -14,7 +14,7 @@ function SignUp() {
         sx={{ color: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "3.5rem" }}
       >
         Ex
-        <img className={styles.spinAnimation} src="../../public/saturn.png" />
+        <img className={styles.spinAnimation} src="./saturn.png?url" />
         Planetarium
       </Typography>
       <div className={styles.loginCard} >
@@ -30,12 +30,3 @@ function SignUp() {
 }
 
 export default SignUp;
-
-// function SignUp(){
-//   <div>
-//      <ChatbotCanvas />
-//      <Card isSignUp={true} params="params" />
-//   </div>
-// };
-
-// export default SignUp;

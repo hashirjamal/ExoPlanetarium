@@ -1,11 +1,5 @@
 import React from 'react'
-import { Suspense } from "react";
-import styles from "./Chatbot.module.css"
 import Chatbot from './Chatbot'
-
-import { Canvas } from "@react-three/fiber";
-import Three from "../../../components/Three";
-
 import ChatbotCanvas from './ChatbotCanvas';
 
 export default function ChatbotPage() {
