@@ -38,7 +38,7 @@ const Navbar = () => {
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between" }}>
-        <Typography variant="h6" sx={{ color: "white" }}>
+        <Typography variant="h6" sx={{ color: "white", fontFamily: "'Orbitron', sans-serif" }}>
           Ex
           <img className={style.spinAnimation} src="../../public/saturn.png" />
           Planetarium
@@ -47,7 +47,7 @@ const Navbar = () => {
           <Button
             color="inherit"
             component={Link}
-            to="/"
+            to="/home"
             sx={{
               color: "white",
               "&:hover": {
@@ -73,7 +73,7 @@ const Navbar = () => {
           <Button
             color="inherit"
             component={Link}
-            to="/blogs"
+            to="/posts"
             sx={{
               color: "white",
               "&:hover": {

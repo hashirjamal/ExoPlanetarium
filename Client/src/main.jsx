@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         element: <ChatbotPage />
       }
     ],
-  },
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

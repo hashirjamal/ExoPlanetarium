@@ -1,12 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
-    extend: {
-      textShadow: {
-        default: "3px 2px 5px white",
-      },
-    },
+    extend: {},
   },
-  plugins: [require("tailwindcss-textshadow")],
-};
+  plugins: [],
+}

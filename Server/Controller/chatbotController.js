@@ -7,9 +7,11 @@ exports.handlePrompt = asyncErrorHandler(async (req, res, next) => {
     const {userInp} = req.body;
     const {convHistory} = req.body;
 
-    const standaloneQues = await llmHandler.createQuestion(userInp,convHistory)
-
+    const standaloneQues = await llmHandler.createQuestion(userInp,convHistory);
+    console.log("Standalone:",standaloneQues);
+    
     const similarVecs = await getVectors(standaloneQues)
+  
 
     console.log("Retrieved information: ",similarVecs)
 

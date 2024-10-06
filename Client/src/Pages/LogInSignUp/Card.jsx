@@ -120,7 +120,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
 
     return (
         <div>
-            <div className={isSignUp ? styles.signupcontainer : styles.logincontainer}>
+            <div className={`${isSignUp? styles.signupcontainer : styles.logincontainer}`}>
                 <Typography variant='h4' style={{ fontSize: '1.5rem', textAlign: 'center', margin: '4px 0', color: '#00315e', marginBottom: '20px' }}>
                     {isLogin ? 'Log In' : isSignUp ? 'Sign Up' : !setPass && 'Reset Password'}
                 </Typography>

@@ -18,10 +18,11 @@ exports.createQuestion = async (userInp)=>{
     "Authorization": `Bearer ${process.env.OR_TOKEN}`, 
     "Content-Type": "application/json"
 }})
-// console.log(llmRes.data.choices)
+console.log(llmRes.data.choices)
 return llmRes.data.choices[0].message.content;
 }
 catch(e){
+    console.log(e)
     return e
 }
 }
