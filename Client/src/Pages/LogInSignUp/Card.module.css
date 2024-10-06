@@ -36,6 +36,8 @@ body {
   height: 100%;
     width: 50%;
   left: 0;
+  /* z-index: 1000; */
+  /* transform: translate(50%, 50%); */
 
 }
 
@@ -111,7 +113,7 @@ select {
 
 .btn {
   padding: 0.6rem 1.5rem;
-  margin: 1.5rem 0;
+  margin: 0.4rem 0;
   display: block;
   width: 90%;
   background: linear-gradient(90deg, rgba(60, 102, 223, 1) 0%, #00bde5 96%);

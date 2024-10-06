@@ -6,6 +6,7 @@ const userSchema = mongoose.Schema(
     username: {
       type: String,
       required: [true, "User name is a required field"],
+      unique: true
     },
     email: {
       type: String,
@@ -18,16 +19,6 @@ const userSchema = mongoose.Schema(
       required: [true, "Password is a required field"],
       select: false,
     },
-    confirmPassword: {
-      type: String,
-      required: [true, "Please confirm your password"],
-      validate: {
-        validator: function (val) {
-          return val === this.password;
-        },
-        message: "Password and confirm password does not match",
-      },
-    },
     quizScore: {
       type: Number
     },
@@ -35,16 +26,6 @@ const userSchema = mongoose.Schema(
       type: String,
       enum: ["user", "admin"],
       default: "user",
-    },
-    photo: {
-      type: String,
-      default:
-        "https://img.freepik.com/premium-vector/default-avatar-profile-icon-social-media-user-image-gray-avatar-icon-blank-profile-silhouette-vector-illustration_561158-3407.jpg?w=740",
-    },
-    active: {
-      type: Boolean,
-      default: true,
-      select: false,
     },
     hiScore:{
       type: Number,

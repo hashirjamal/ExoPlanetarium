@@ -9,7 +9,8 @@ const BackgroundQuiz = ({children}) => {
           {children}
         <div class="hide-cursor"></div>
       </div>
-      <div></div>
+      <div>
+      </div>
     </>
   );
 };

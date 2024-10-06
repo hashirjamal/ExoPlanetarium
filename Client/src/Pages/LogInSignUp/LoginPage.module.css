@@ -30,6 +30,10 @@
     border-radius: 15px;
     padding: 1rem;
     height: 100%;
+    position: absolute;
+    width: 50%;
+    top: 0;
+    right: 0;
 }
 
 #logo {
@@ -86,7 +90,7 @@ select {
 
 .btn {
     padding: 0.4rem 1rem;
-    margin: 1.8rem 0;
+    margin: 0.4rem 0;
     display: block;
     width: 90%;
     background: rgb(245, 230, 10);

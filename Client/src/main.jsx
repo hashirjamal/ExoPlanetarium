@@ -7,10 +7,10 @@ import {
 } from "react-router-dom";
 import './index.css'
 import QuizPage from './Pages/Quiz/QuizPage.jsx';
-import ChatbotPage from './Pages/Quiz/Chatbot/ChatbotPage.jsx';
 import Home from "./Pages/Home/Home.jsx";
 import LoginPage from "./Pages/LogInSignUp/LoginPage.jsx";
 import SignUp from './Pages/LogInSignUp/SignUp.jsx';
+import ChatbotPage from './Pages/Chatbot/ChatbotPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,14 +33,12 @@ const router = createBrowserRouter([
         path: "/exoplanet-quiz",
         element: <QuizPage />,
       },
-    ],
-      },
       {
-        path: '/chatbot',
-        element: <ChatbotPage />,
+        path: "/chatbot",
+        element: <ChatbotPage />
       }
-    
-  ,
+    ],
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
