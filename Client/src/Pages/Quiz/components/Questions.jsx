@@ -26,27 +26,11 @@ const Questions = ({
   modalRef,
   handlePage,
   handleCanvasKey,
+  data,
+  fetching,
 }) => {
-  const [data, setData] = useState([]);
-  const [fetching, setFetching] = useState(false);
   const [clicked, setClicked] = useState(false);
   const optionsRef = useRef([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setFetching(true);
-      try {
-        const response = await axios.get(
-          "http://localhost:3000/quiz/getQuestions"
-        );
-        setData(response.data.data.questions);
-      } catch (err) {
-        console.log(err);
-      }
-      setFetching(false);
-    };
-    fetchData();
-  }, []);
 
   const checkAnswer = (event) => {
     setClicked(true);

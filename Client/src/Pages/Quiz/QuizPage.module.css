@@ -18,14 +18,16 @@
     color: #F5F5F5;
     min-width: 70%;
     max-width: 70%;
-    min-height: 80vh;
+    min-height: 70vh;
     padding: 35px 50px;
     opacity: 0;
+    margin-top: 100px;
     transform: scale(0);
     animation: scaleUp 1s forwards;
 }
 @media screen and (max-width: 576px){
     .modalBox {
+        margin-top: 240px;
         padding: 20px 30px;
         min-width: 90%;
         max-width: 90%;
@@ -34,11 +36,6 @@
 }
 
 .background {
-    /* background-image: url('https://www.pixelstalk.net/wp-content/uploads/image10/Cool-4K-Space-wallpaper-with-a-beautiful-image-of-a-blue-ringed-planet-with-its-moons-set-against-a-deep-blue-starry-background.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; */
     min-height: 100vh;
     position: absolute;
     top: 0;
@@ -54,4 +51,11 @@
 .heading{
     font-family: 'Orbitron', sans-serif;
     margin-bottom: 5px;
+}
+.overBox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
 }

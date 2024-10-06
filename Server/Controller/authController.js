@@ -25,7 +25,10 @@ const createSendResponse = (user, statusCode, res) => {
 };
 // Sign Up functionality 
 exports.signUp = asyncErrorHandler(async (req, res, next) => {
+  console.log(req.body);
+
   const user = await User.create(req.body);
+
   const { password: _password, ...rest } = user._doc;
   createSendResponse(rest, 201, res);
 });

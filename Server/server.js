@@ -16,8 +16,8 @@ mongoose
   .then((conn) => {
     console.log("DB has been connected successfully");
   })
-  .catch(() => {
-    console.log("DB has not been connected successfully");
+  .catch((error) => {
+    console.log(error);
   });
 //Create Server
 const port = process.env.port || 3000;
