@@ -96,7 +96,7 @@ const Navbar = () => {
             Ex
             <img
               className={style.spinAnimation}
-              src="../../public/saturn.png"
+              src="./saturn.png"
               alt="Saturn Logo"
               style={{ height: "25px" }}
             />
