@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import logo from "./saturn.png";
+import logo from "../../public/saturn.png";
 
 const Footer = () => {
   return (

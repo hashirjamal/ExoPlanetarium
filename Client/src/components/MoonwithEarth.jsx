@@ -1,5 +1,5 @@
 import React from "react";
-import moonWithEarthImage from "/moon.jpg";
+import moonWithEarthImage from "../../public/moon.jpg";
 import style from "../Pages/Home/Home.module.css";
 
 const MoonwithEarth = () => {

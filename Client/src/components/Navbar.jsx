@@ -50,7 +50,7 @@ const Navbar = () => {
       }}
     >
       <List>
-        <ListItem button component={Link} to="/home">
+        <ListItem button component={Link} to="/">
           <ListItemText primary="Home" />
         </ListItem>
         <ListItem button component={Link} to="/exoplanet-quiz">
@@ -107,7 +107,7 @@ const Navbar = () => {
             <Button
               color="inherit"
               component={Link}
-              to="/home"
+              to="/"
               sx={{
                 color: "white",
                 "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
