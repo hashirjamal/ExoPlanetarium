@@ -12,6 +12,9 @@ import Home from "./Pages/Home/Home.jsx";
 import LoginPage from './Pages/LogInSignUp/LoginPage.jsx';
 import SignUp from './Pages/LogInSignUp/SignUp.jsx';
 import ChatbotPage from './Pages/Chatbot/ChatbotPage.jsx';
+import BlogPage from './Pages/Blogs/BlogPage.jsx';
+import CreatePost from './Pages/Blogs/CreatePost.jsx';
+import Dashboard from './components/Dashboard.jsx';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +40,18 @@ const router = createBrowserRouter([
       {
         path: "/chatbot",
         element: <ChatbotPage />
+      },
+      {
+        path: "/blogs",
+        element: <Dashboard/>
+      },
+      {
+        path: "/post/:slug",
+        element: <BlogPage />
+      },
+      {
+        path: "/create-post",
+        element: <CreatePost />
       }
     ],
   }

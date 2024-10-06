@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRouter = require("./Router/authRoute");
 const quizRouter = require("./Router/quizRoute");
 const chatbotRouter = require("./Router/chatbotRoute");
+const postRouter = require("./Router/postRoute");
 // const chatbotRouter = require("./Router/chatbotRoute")
 const app = express();
 
@@ -31,6 +32,7 @@ app.use("/api/auth", authRouter);
 app.use("/quiz", quizRouter);
 app.use("/chatbot",chatbotRouter);
 app.use("/chatbot",chatbotRouter);
+app.use("/api/post", postRouter);
 
 // Error Handler of production environment
 app.use((err, req, res, next) => {
