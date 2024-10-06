@@ -6,7 +6,9 @@
     background-attachment: fixed;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     padding: 6rem 2rem;
+    align-items: center;
     justify-content: center;
 
     

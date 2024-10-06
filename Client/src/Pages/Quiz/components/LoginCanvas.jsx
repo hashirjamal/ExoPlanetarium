@@ -26,7 +26,6 @@ function RotatingMesh({ rotationSpeed, lightIntensity }) {
 }
 
 function LoginCanvas({isSignUp}) {
-    const gui = useRef();
     const [rotationSpeed, setRotationSpeed] = useState(0.01);
     const [lightIntensity, setLightIntensity] = useState(1);
 

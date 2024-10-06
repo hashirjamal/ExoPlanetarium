@@ -60,16 +60,12 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
             const response = await axios.post('http://localhost:3000/api/auth/signUp', { email, username, password }, {withCredentials: true});
             console.log(response);
             setLoading(false);
-            // showAlert(response.data.message, 'success');
             if(response.data.status === "success"){
                 nav("/");
             }
-            // Optionally navigate to login or dashboard
-            // nav('/login'); // Change this to your target route
         } catch (err) {
             setLoading(false);
             console.log(err);
-            // showAlert(err.response.data.message, 'error');
         }
     };
 
