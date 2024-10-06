@@ -9,8 +9,8 @@ function RotatingMesh({ rotationSpeed, lightIntensity }) {
 
     useFrame(() => {
         if (mesh.current) {
-            mesh.current.rotation.x += rotationSpeed;
-            mesh.current.rotation.y += rotationSpeed;
+            // mesh.current.rotation.x += rotationSpeed;
+            mesh.current.rotation.y += rotationSpeed*0.3
         }
     });
 

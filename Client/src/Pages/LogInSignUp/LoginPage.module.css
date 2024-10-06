@@ -13,13 +13,29 @@
 
     
 }
+@keyframes spin {
+    0% {
+      transform: rotate3d(0, 0, 1, 0deg);
+    }
+    50% {
+      transform: rotate3d(0, 1, 0, 45deg);
+    }
+    100%{
+      transform: rotate3d(0, 0, 1, 0deg);
+    }
+  }
+.spinAnimation {
+    animation: spin 3s linear infinite;
+    height:10vh;
+    display: inline;
+  }
 .loginCard{
     display: flex;
     position: relative;
     width: 60vw;
     background-color: #004f6c;
     border-radius: 16px;
-    height: 75vh;
+    min-height: 75vh;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
 }
 
