@@ -3,6 +3,8 @@ import Message from './Message'
 import styles from "./Chatbot.module.css"
 import axios from "axios"
 import gif from "../../assets/output-onlinegiftools.gif"
+import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+
 
 export default function Chatbot() {
 
@@ -49,8 +51,12 @@ export default function Chatbot() {
     }
 
   return (
-    <div className='border-gray-600 border rounded-2xl sm:w-8/12 w-full sm:m-5 m-2 p-5 flex flex-col h-98    '>
-  <div className='text-center text-3xl'>ExoBot</div>
+    <div className='border-gray-600 border rounded-2xl sm:w-8/12 w-full sm:m-5 mx-2 p-5 flex flex-col h-98 sm:mt-[7rem] max-sm:mt-[7em] '>
+  <div className='text-center text-3xl'>
+  <Typography variant="h4" sx={{ color: "white", fontFamily: "'Orbitron', sans-serif" }}>
+          ExoBot
+        </Typography>
+  </div>
 
   {/* Message container, grows to fill the available space */}
   <div className= {`${styles.scrollable} h-64 flex-grow overflow-y-auto `} >
