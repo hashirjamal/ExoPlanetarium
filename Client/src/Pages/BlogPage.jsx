@@ -29,7 +29,7 @@ function BlogPage() {
   }, [slug]);
 
   return (
-    <>
+    <div>
       <motion.div
         variants={fadeIn("up", 0.2)}
         initial="hidden"
@@ -38,14 +38,11 @@ function BlogPage() {
         className="relative  w-full"
       >
         <div className={`w-full h-screen bg-center bg-slate-300`}>
-          <img
-            src={postData.imageUrl}
-            className="w-full h-full max-w-8xl max-h-6xl"
-          />
+          <img src={postData.imageUrl} className="w-full h-full bg-cover" />
         </div>
 
         <div
-          variants={fadeIn("left", 0.3)}
+          variants={fadeIn("left", 0)}
           initial="hidden"
           whileInView={"show"}
           viewport={{ once: false, amount: 0.9 }}
@@ -58,7 +55,7 @@ function BlogPage() {
         </div>
       </motion.div>
       <motion.div
-        variants={fadeIn("left", 0.5)}
+        variants={fadeIn("left", 0.1)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.5 }}
@@ -91,12 +88,11 @@ function BlogPage() {
             <img
               className="object-cover w-full min-h-48"
               src="https://science.nasa.gov/wp-content/uploads/2023/06/1795-1585-what-is-exoplanet-banner-jpg.webp?w=1280&format=webp"
-              alt=""
             />
           </div>
         </div>
       </motion.div>
-    </>
+    </div>
   );
 }
 

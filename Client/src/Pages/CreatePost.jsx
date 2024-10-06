@@ -124,125 +124,180 @@ function CreatePost() {
   };
   // console.log(formData);
   return (
-    <div className="p-3 min-h-screen mx-auto max-w-4xl px-4">
-      <h1 className="text-center text-4xl font-bold my-7">Create Post</h1>
-      <form
-        className="text-center flex flex-col gap-4"
-        onSubmit={handleSubmitForm}
-      >
-        <div className="flex flex-col sm:flex-row justify-between gap-4">
-          <TextField
-            id="title"
-            label="Title"
-            variant="outlined"
-            onChange={handleChange}
-            className="w-full flex flex-1"
-            required
-          />
-          <FormControl className="w-full md:w-48">
-            <InputLabel id="demo-simple-select-label">
-              Select a category
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              name="category"
-              label="Select a category"
-              value={category}
-              onChange={handleCategoryChange}
-              required
-            >
-              <MenuItem value="exoplanets">Exoplanets</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
-        <TextField
-          id="description"
-          label="Description"
-          variant="outlined"
-          onChange={handleChange}
-          className="w-full flex flex-1"
-          required
-        />
-        <div className="flex items-center p-5 border-2 border-dashed justify-between">
-          <Button
-            component="label"
-            role={undefined}
-            variant="contained"
-            tabIndex={-1}
-            startIcon={<IoCloudUpload />}
-            className="bg-gradient-to-r h-12 from-[#81b0bd] to-[#095b85]"
+    <>
+      <div className="bg-[url('https://images.unsplash.com/photo-1506272517965-ec6133efee7a?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover w-full min-h-screen pb-5">
+        <div className="p-3 min-h-screen mx-auto max-w-4xl px-4">
+          <h1 className="text-center text-4xl font-bold my-7 dark:text-gray-200">
+            Create Post
+          </h1>
+          <form
+            className="text-center flex flex-col gap-4"
+            onSubmit={handleSubmitForm}
           >
-            Upload files
-            <VisuallyHiddenInput
-              type="file"
-              onChange={(e) => {
-                setFile(e.target.files[0]);
-                setImageFileUploadError(null);
-              }}
-              multiple
-            />
-          </Button>
-          <Button
-            onClick={handleUploadImage}
-            type="button"
-            variant="outlined"
-            className="w-40 h-12 outline outline-[#81b0bd]"
-            disabled={ImageFileUploadProgress}
-          >
-            {ImageFileUploadProgress ? (
-              <div className="w-8 h-8">
-                <CircularProgressbar
-                  value={ImageFileUploadProgress}
-                  text={`${ImageFileUploadProgress || 0} %`}
-                />
-              </div>
-            ) : (
-              "Upload Image"
-            )}
-          </Button>
-        </div>
-        {imageFileUploadError && (
-          <Alert severity="error">{imageFileUploadError}</Alert>
-        )}
-        {formData.imageUrl && (
-          <img
-            src={formData.imageUrl}
-            alt="upload"
-            className="object-cover w-full h-72"
-          />
-        )}
-        <ReactQuill
-          className="h-72 mb-14"
-          theme="snow"
-          placeholder="Write Something..."
-          onChange={(value) => {
-            setForm({ ...formData, content: value });
-          }}
-        />
+            <div className="flex flex-col sm:flex-row justify-between gap-4 color-white">
+              <TextField
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    color: "white",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white",
+                    },
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "white",
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "white",
+                  },
+                }}
+                id="title"
+                label="Title"
+                variant="outlined"
+                onChange={handleChange}
+                className="w-full flex flex-1 dark:text-white"
+                required
+              />
+              <FormControl
+                className="w-full md:w-48"
+                sx={{
+                  "& .MuiOutlinedInput-root": {
+                    color: "white",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white",
+                    },
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "white",
+                  },
 
-        <Button
-          variant="contained"
-          type="submit"
-          disableElevation
-          className="bg-gradient-to-r h-12 from-[#81b0bd] to-[#095b85]"
-        >
-          {dataLoading && (
-            <CircularProgress color="inherit" size="25px" className="mr-3 " />
-          )}
-          Publish
-        </Button>
-        {publishError && (
-          <Alert severity="error" className="mt-4">
-            {publishError}
-          </Alert>
-        )}
-        {dataSuccess && (
-          <Alert severity="success" className="mt-2">
-            Post Successfully Published!
-          </Alert>
-        )}
-      </form>
-    </div>
+                  "& .MuiInputLabel-root": {
+                    color: "white",
+                  },
+                }}
+              >
+                <InputLabel id="demo-simple-select-label">
+                  Select a category
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  name="category"
+                  label="Select a category"
+                  value={category}
+                  onChange={handleCategoryChange}
+                  required
+                >
+                  <MenuItem value="exoplanets">Exoplanets</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+            <TextField
+              id="description"
+              label="Description"
+              variant="outlined"
+              onChange={handleChange}
+              className="w-full flex flex-1"
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  color: "white",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    borderColor: "white",
+                  },
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "& .MuiInputLabel-root": {
+                  color: "white",
+                },
+              }}
+              required
+            />
+            <div className="flex items-center p-5 border-2 border-dashed justify-between">
+              <Button
+                component="label"
+                role={undefined}
+                variant="contained"
+                tabIndex={-1}
+                startIcon={<IoCloudUpload />}
+                className="bg-gradient-to-r h-12 from-[#81b0bd] to-[#095b85]"
+              >
+                Upload files
+                <VisuallyHiddenInput
+                  type="file"
+                  onChange={(e) => {
+                    setFile(e.target.files[0]);
+                    setImageFileUploadError(null);
+                  }}
+                  multiple
+                />
+              </Button>
+              <Button
+                onClick={handleUploadImage}
+                type="button"
+                variant="outlined"
+                className="w-40 h-12 outline outline-[#81b0bd]"
+                disabled={ImageFileUploadProgress}
+              >
+                {ImageFileUploadProgress ? (
+                  <div className="w-8 h-8">
+                    <CircularProgressbar
+                      value={ImageFileUploadProgress}
+                      text={`${ImageFileUploadProgress || 0} %`}
+                    />
+                  </div>
+                ) : (
+                  "Upload Image"
+                )}
+              </Button>
+            </div>
+            {imageFileUploadError && (
+              <Alert severity="error">{imageFileUploadError}</Alert>
+            )}
+            {formData.imageUrl && (
+              <img
+                src={formData.imageUrl}
+                alt="upload"
+                className="object-cover w-full h-72"
+              />
+            )}
+            <ReactQuill
+              className="h-72 mb-14 dark:text-white"
+              theme="snow"
+              placeholder="Write Something..."
+              onChange={(value) => {
+                setForm({ ...formData, content: value });
+              }}
+            />
+
+            <Button
+              variant="contained"
+              type="submit"
+              disableElevation
+              className="bg-gradient-to-r h-12 from-[#81b0bd] to-[#095b85]"
+            >
+              {dataLoading && (
+                <CircularProgress
+                  color="inherit"
+                  size="25px"
+                  className="mr-3 "
+                />
+              )}
+              Publish
+            </Button>
+            {publishError && (
+              <Alert severity="error" className="mt-4">
+                {publishError}
+              </Alert>
+            )}
+            {dataSuccess && (
+              <Alert severity="success" className="mt-2">
+                Post Successfully Published!
+              </Alert>
+            )}
+          </form>
+        </div>
+      </div>
+    </>
   );
 }
 

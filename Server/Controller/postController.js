@@ -40,3 +40,13 @@ exports.getPost = asyncErrorHandler(async (req, res, next) => {
     data: post,
   });
 });
+exports.getAllPosts = asyncErrorHandler(async (req, res, next) => {
+  const posts = await Post.find();
+  if (posts.length === 0) {
+    return next(new CustomError("No posts found", 404));
+  }
+  res.status(200).json({
+    status: "success",
+    posts,
+  });
+});
