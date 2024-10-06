@@ -73,7 +73,7 @@ const Navbar = () => {
           <Button
             color="inherit"
             component={Link}
-            to="/posts"
+            to="/blogs"
             sx={{
               color: "white",
               "&:hover": {
