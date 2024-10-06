@@ -1,9 +1,10 @@
 import React from "react";
+import style from "../Pages/Home/Home.module.css"; 
 
 const HomeVideo = () => {
   return (
-    <div className="w-full relative">
-      <video className="w-full backdrop-opacity-0 " autoPlay muted loop>
+    <div className={`w-full relative ${style.videoContainer}`}>
+      <video className={`w-full h-auto ${style.video}`} autoPlay muted loop>
         <source src="../../videos/Exoplanetarium.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
@@ -11,4 +12,4 @@ const HomeVideo = () => {
   );
 };
 
-export default HomeVideo;
+export default HomeVideo; 
