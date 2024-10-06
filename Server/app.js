@@ -16,6 +16,7 @@ app.use(cookieParser());
 const allowedOrigins = [
   "http://localhost:4173",
   "http://localhost:5173",
+  "exo-planetarium-pw2vl33lj-hashir-jamal-khans-projects.vercel.app"
 ]
 
 const corsOptions = {
