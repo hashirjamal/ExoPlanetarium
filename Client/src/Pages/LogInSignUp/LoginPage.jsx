@@ -19,7 +19,10 @@ function LoginPage() {
     // </div>
     <div>
       <ChatbotCanvas />
+      <div className="flex justify-center align-center">
+
       <Card isLogin={true} params="params" />
+      </div>
 
     </div>
   )

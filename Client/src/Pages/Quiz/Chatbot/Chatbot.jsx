@@ -56,7 +56,7 @@ export default function Chatbot() {
   <div className= {`${styles.scrollable} h-64 flex-grow overflow-y-auto `} >
     {/* <Message isUser={true} />
     <Message isUser={false} /> */}
-  <Message message="Welcome to ExoPlant. You AI assistant to ask any thing related ExoPlanets" role="assistant"/>
+  <Message message="Hey I am ExoBot. Your AI assistant to answer your queries related to ExoPlanets" role="assistant"/>
     {
         allMsgs.map((v,i)=>{
             console.log(v)

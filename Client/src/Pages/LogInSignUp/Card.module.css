@@ -19,6 +19,7 @@ body {
   height: 100%;
     width: 50%;
   right: 0;
+ /* margin: 5rem 20rem 15rem 10rem; */
   /* transform: translate(-50%, -50%); */
 }
 .signupcontainer{
@@ -30,7 +31,7 @@ body {
   box-sizing: border-box;
   border-radius: 15px 0 0 15px;
   padding: 2rem;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   height: 100%;
     width: 50%;
@@ -171,3 +172,4 @@ select {
 .closebtn:hover {
   color: black;
 }
+
