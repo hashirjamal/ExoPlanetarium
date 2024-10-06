@@ -30,7 +30,7 @@ function DashPosts() {
   ) : (
     <>
       <div className={styles.blogPost}>
-        <h1 className={`text-center sm:text-8xl font-bold  text-4xl dark:text-gray-200 py-5 ${styles.articleHeading}`}>
+        <h1 className={`text-center sm:text-8xl font-bold  text-4xl text-gray-100 py-5 ${styles.articleHeading}`}>
           Articles
         </h1>
         <div className="flex flex-wrap gap-4 justify-center items-center p-5">
