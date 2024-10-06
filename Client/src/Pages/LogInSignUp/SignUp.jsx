@@ -30,12 +30,3 @@ function SignUp() {
 }
 
 export default SignUp;
-
-// function SignUp(){
-//   <div>
-//      <ChatbotCanvas />
-//      <Card isSignUp={true} params="params" />
-//   </div>
-// };
-
-// export default SignUp;
