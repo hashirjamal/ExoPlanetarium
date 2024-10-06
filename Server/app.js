@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const authRouter = require("./Router/authRoute");
 const quizRouter = require("./Router/quizRoute");
+const postRouter = require("./Router/postRoute");
 const app = express();
 
 // defining Middlewares
@@ -12,6 +13,7 @@ app.use(cookieParser());
 app.use(cors());
 app.use(morgan("dev"));
 app.use("/api/auth", authRouter);
+app.use("/api/post", postRouter);
 app.use("/quiz", quizRouter);
 
 // Error Handler of production environment
