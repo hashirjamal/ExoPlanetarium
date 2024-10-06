@@ -58,7 +58,7 @@ function BlogPage() {
         variants={fadeIn("left", 0.1)}
         initial="hidden"
         whileInView={"show"}
-        viewport={{ once: false, amount: 0.5 }}
+        viewport={{ once: false, amount: 0.1 }}
         className="max-w-6xl mx-auto p-5 my-14 "
       >
         <h1 className="text-6xl font-bold text-gray-950 mt-7">Overview</h1>
@@ -68,7 +68,7 @@ function BlogPage() {
         ></div>
       </motion.div>
       <motion.div
-        variants={fadeIn("right", 0.6)}
+        variants={fadeIn("right", 0.1)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.3 }}
