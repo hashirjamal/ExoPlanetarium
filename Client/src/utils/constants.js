@@ -1,6 +1,6 @@
 export const HomePageContent = [
   {
-    image: "../../public/blogs.jpg",
+    image: "../../public/blogs.avif",
     heading: "Blogs",
     content: "Read about the latest discoveries in the field of exoplanets.",
     button: "Read More",
@@ -8,7 +8,7 @@ export const HomePageContent = [
   },
  
   {
-    image: "../../public/quiz.webp",
+    image: "../../public/quiz.jfif",
     heading: "Quiz",
     content: "Test your knowledge about exoplanets with our quiz.",
     button: "Start Quiz",
