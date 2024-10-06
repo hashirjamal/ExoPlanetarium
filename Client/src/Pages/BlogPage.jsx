@@ -1,27 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { fadeIn } from "./../variants";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
 function BlogPage() {
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState({});
-  const [myStateVisible, setMyStateVisible] = useState();
-  const myRef = useRef();
   const { slug } = useParams();
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      const entry = entries[0];
-      setMyStateVisible(entry.isIntersecting);
-      console.log("entry", entry);
-    });
-    observer.observe(myRef.current);
-  }, []);
   useEffect(() => {
     const fetchPostData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/api/post/get-post/${slug}`);
+        const response = await axios.get(
+          `http://localhost:3000/api/post/get-post/${slug}`
+        );
         setLoading(false);
         if (response.data) {
           setPostData(response.data.data);
@@ -33,11 +27,16 @@ function BlogPage() {
     };
     fetchPostData();
   }, [slug]);
-  console.log(postData.imageUrl);
 
   return (
     <>
-      <section ref={myRef} className="relative  w-full">
+      <motion.div
+        variants={fadeIn("up", 0.2)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.9 }}
+        className="relative  w-full"
+      >
         <div className={`w-full h-screen bg-center bg-slate-300`}>
           <img
             src={postData.imageUrl}
@@ -45,21 +44,38 @@ function BlogPage() {
           />
         </div>
 
-        <div className="absolute top-1/2 -translate-y-1/3 mx-7 max-w-3xl">
+        <div
+          variants={fadeIn("left", 0.3)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.9 }}
+          className="absolute top-1/2 -translate-y-1/3 mx-7 max-w-3xl"
+        >
           <h1 className="font-bold  text-5xl sm:text-8xl text-white">
             {postData.title}
           </h1>
           <p className="text-md mt-3 text-gray-300">{postData.description}</p>
         </div>
-      </section>
-      <section className="max-w-6xl mx-auto p-5">
+      </motion.div>
+      <motion.div
+        variants={fadeIn("left", 0.5)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.5 }}
+        className="max-w-6xl mx-auto p-5 my-14 "
+      >
         <h1 className="text-6xl font-bold text-gray-950 mt-7">Overview</h1>
         <div
           className="p-3 max-w-7xl mx-auto w-full text-gray-800 text-xl"
           dangerouslySetInnerHTML={{ __html: postData && postData.content }}
         ></div>
-      </section>
-      <section>
+      </motion.div>
+      <motion.div
+        variants={fadeIn("right", 0.6)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.3 }}
+      >
         <div className="h-auto bg-gray-200 flex lg:flex-row justify-center items-center flex-col gap-4 py-28">
           <div className="px-10">
             <h1 className="text-6xl md:text-8xl font-bold text-gray-900">
@@ -79,7 +95,7 @@ function BlogPage() {
             />
           </div>
         </div>
-      </section>
+      </motion.div>
     </>
   );
 }

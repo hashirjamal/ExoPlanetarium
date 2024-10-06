@@ -122,7 +122,7 @@ function CreatePost() {
     setCategory(e.target.value);
     setForm({ ...formData, [e.target.name]: e.target.value });
   };
-  console.log(formData);
+  // console.log(formData);
   return (
     <div className="p-3 min-h-screen mx-auto max-w-4xl px-4">
       <h1 className="text-center text-4xl font-bold my-7">Create Post</h1>
