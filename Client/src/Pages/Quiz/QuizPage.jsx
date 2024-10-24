@@ -24,8 +24,6 @@ const QuizPage = () => {
   const [data, setData] = useState([]);
   const [val, setVal] = useState(undefined);
 
-  // const modal = useRef(null);
-
   const [page, setPage] = useState(false);
   const [canvasKey, setCanvasKey] = useState(0);
   const [fetching, setFetching] = useState(false);
@@ -58,9 +56,7 @@ const QuizPage = () => {
     setPage(true);
   };
   const handleAnswerSelected = () => {
-    // setShowAfterQuiz(true);
     setTimeout(() => {
-      // setShowAfterQuiz(false);
       setCounter((prev) => prev + 1);
     }, 1000);
   };
@@ -73,7 +69,7 @@ const QuizPage = () => {
       <Canvas
         key={canvasKey}
         id="cn"
-        style={{ width: "100%", height: "100vh" }} // Ensure canvas takes full width and height
+        style={{ width: "100%", height: "100%", marginTop: "4em", overflow: "hidden" }}
         camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 0, 5] }}
       >
         <Suspense fallback={null}>

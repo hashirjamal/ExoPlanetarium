@@ -50,7 +50,7 @@ const Navbar = () => {
       }}
     >
       <List>
-        <ListItem button component={Link} to="/">
+        <ListItem button component={Link} to="/home">
           <ListItemText primary="Home" />
         </ListItem>
         <ListItem button component={Link} to="/exoplanet-quiz">
@@ -72,7 +72,6 @@ const Navbar = () => {
         position="fixed"
         sx={{
           width: { xs: '100%', md: '100%' , lg: '100%' },
-          maxWidth: "1500px", 
           margin: "0 auto",
           padding: "10px",
           backgroundColor: scrollPosition ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 1)",
@@ -96,7 +95,7 @@ const Navbar = () => {
             Ex
             <img
               className={style.spinAnimation}
-              src="../../public/saturn.png"
+              src="/saturn.png"
               alt="Saturn Logo"
               style={{ height: "25px" }}
             />
@@ -107,7 +106,7 @@ const Navbar = () => {
             <Button
               color="inherit"
               component={Link}
-              to="/"
+              to="/home"
               sx={{
                 color: "white",
                 "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
