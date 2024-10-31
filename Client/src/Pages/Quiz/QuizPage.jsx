@@ -42,12 +42,15 @@ const QuizPage = () => {
           { withCredentials: true }
         );
         setData(getRandomElements(response.data.data.questions, 10));
-        const highScoreRes = await axios.get("http://localhost:3000/quiz/getHighScore",{withCredentials:true});
+        const highScoreRes = await axios.get(
+          "http://localhost:3000/quiz/getHighScore",
+          { withCredentials: true }
+        );
         setHighScore(highScoreRes.data.data.highScore);
       } catch (err) {
-        console.log(err);  
+        console.log(err);
       }
-      setFetching(false);h
+      setFetching(false);
     };
     fetchData();
   }, []);
@@ -60,8 +63,12 @@ const QuizPage = () => {
       setCounter((prev) => prev + 1);
     }, 1000);
   };
-  if(counter>9 && score>highScore){
-    axios.patch("http://localhost:3000/quiz/saveHighScore", {hiScore: score},{withCredentials:true})
+  if (counter > 9 && score > highScore) {
+    axios.patch(
+      "http://localhost:3000/quiz/saveHighScore",
+      { hiScore: score },
+      { withCredentials: true }
+    );
   }
 
   return (
@@ -69,7 +76,12 @@ const QuizPage = () => {
       <Canvas
         key={canvasKey}
         id="cn"
-        style={{ width: "100%", height: "100%", marginTop: "4em", overflow: "hidden" }}
+        style={{
+          width: "100%",
+          height: "100%",
+          marginTop: "4em",
+          overflow: "hidden",
+        }}
         camera={{ fov: 45, near: 0.1, far: 1000, position: [0, 0, 5] }}
       >
         <Suspense fallback={null}>
@@ -86,11 +98,29 @@ const QuizPage = () => {
         <div className={styles.modalBox}>
           {counter > 9 ? (
             <div className={styles.overBox}>
-            <h1 className={styles.heading} style={{fontSize: "2rem", fontWeight: "bold"}}>Quiz Over</h1>
-            <h1 className={styles.heading} style={{fontSize: "1.2rem"}}>Your Score: {score}</h1>
-            <h1 className={styles.heading} style={{fontSize: "1.2rem"}}>High Score: {score>highScore? score: highScore}</h1>
-            <h1 className={styles.heading} style={{fontSize: "1.2rem"}}>Incorrect Answer: {10-score}</h1>
-            {score>highScore && <h1 className={styles.heading} style={{fontSize: "2.5rem", fontWeight:"bold"}} >New High Score</h1>}
+              <h1
+                className={styles.heading}
+                style={{ fontSize: "2rem", fontWeight: "bold" }}
+              >
+                Quiz Over
+              </h1>
+              <h1 className={styles.heading} style={{ fontSize: "1.2rem" }}>
+                Your Score: {score}
+              </h1>
+              <h1 className={styles.heading} style={{ fontSize: "1.2rem" }}>
+                High Score: {score > highScore ? score : highScore}
+              </h1>
+              <h1 className={styles.heading} style={{ fontSize: "1.2rem" }}>
+                Incorrect Answer: {10 - score}
+              </h1>
+              {score > highScore && (
+                <h1
+                  className={styles.heading}
+                  style={{ fontSize: "2.5rem", fontWeight: "bold" }}
+                >
+                  New High Score
+                </h1>
+              )}
             </div>
           ) : (
             <>
@@ -107,7 +137,7 @@ const QuizPage = () => {
                 data={data}
                 fetching={fetching}
               />
-              <Stats val={val} score={score} highScore={highScore} ></Stats>
+              <Stats val={val} score={score} highScore={highScore}></Stats>
             </>
           )}
         </div>

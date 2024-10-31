@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -11,12 +11,14 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+import { UserContext } from "../store/userContext";
 import MenuIcon from "@mui/icons-material/Menu";
 import style from "../Pages/Home/Home.module.css";
 
 const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,7 +33,10 @@ const Navbar = () => {
   }, []);
 
   const toggleDrawer = (open) => (event) => {
-    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
     setDrawerOpen(open);
@@ -59,6 +64,11 @@ const Navbar = () => {
         <ListItem button component={Link} to="/blogs">
           <ListItemText primary="Blogs" />
         </ListItem>
+        {user?.role === "admin" && (
+          <ListItem button component={Link} to="/create-post">
+            <ListItemText primary="Create Post" />
+          </ListItem>
+        )}
         <ListItem button component={Link} to="/chatbot">
           <ListItemText primary="Chatbot" />
         </ListItem>
@@ -71,14 +81,20 @@ const Navbar = () => {
       <AppBar
         position="fixed"
         sx={{
-          width: { xs: '100%', md: '100%' , lg: '100%' },
+          width: { xs: "100%", md: "100%", lg: "100%" },
           margin: "0 auto",
           padding: "10px",
-          backgroundColor: scrollPosition ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 1)",
+          backgroundColor: scrollPosition
+            ? "rgba(255, 255, 255, 0.2)"
+            : "rgba(0, 0, 0, 1)",
           backdropFilter: scrollPosition ? "blur(8px)" : "none",
-          borderBottom: scrollPosition ? "none" : "1px solid rgba(255, 255, 255, 0.3)",
+          borderBottom: scrollPosition
+            ? "none"
+            : "1px solid rgba(255, 255, 255, 0.3)",
           transition: "background-color 0.3s ease, backdrop-filter 0.3s ease",
-          boxShadow: scrollPosition ? "0px 4px 20px rgba(0, 0, 0, 0.1)" : "none",
+          boxShadow: scrollPosition
+            ? "0px 4px 20px rgba(0, 0, 0, 0.1)"
+            : "none",
         }}
       >
         <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -139,6 +155,17 @@ const Navbar = () => {
             <Button
               color="inherit"
               component={Link}
+              to="/create-post"
+              sx={{
+                color: "white",
+                "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+              }}
+            >
+              Create Post
+            </Button>
+            <Button
+              color="inherit"
+              component={Link}
               to="/chatbot"
               sx={{
                 color: "white",
@@ -172,7 +199,7 @@ const Navbar = () => {
             backgroundColor: "rgba(0, 0, 0, 0.8)",
             color: "white",
             marginTop: "64px",
-            width: "120px", 
+            width: "120px",
           },
         }}
       >
