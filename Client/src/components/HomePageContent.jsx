@@ -20,7 +20,7 @@ const HomePageContentComponent = () => {
         >
           <div
             data-aos="fade-up"
-            className="flex flex-col md:flex-row bg-slate-900 text-white p-4 md:p-10 rounded-2xl opacity-90 gap-4 md:gap-40 w-full md:w-[80vw] h-auto shadow-slate-50 drop-shadow-xl"
+            className="flex flex-col md:flex-row bg-[#06080d] text-white p-4 md:p-10 rounded-2xl opacity-90 gap-4 md:gap-40 w-full md:w-[80vw] h-auto shadow-slate-50 drop-shadow-xl"
             style={{
               flexDirection: index % 2 === 0 ? "row" : "row-reverse",
               alignItems: "center",
