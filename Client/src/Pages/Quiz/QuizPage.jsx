@@ -49,7 +49,7 @@ const QuizPage = () => {
       } catch (err) {
         console.log(err);  
       }
-      setFetching(false);h
+      setFetching(false);
     };
     fetchData();
   }, []);

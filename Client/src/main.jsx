@@ -15,6 +15,7 @@ import ChatbotPage from './Pages/Chatbot/ChatbotPage.jsx';
 import BlogPage from './Pages/Blogs/BlogPage.jsx';
 import CreatePost from './Pages/Blogs/CreatePost.jsx';
 import Dashboard from './components/Dashboard.jsx';
+import AddQuiz from './Pages/Quiz/AddQuiz.jsx';
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: "/exoplanet-quiz",
         element: <QuizPage />,
+      },
+      {
+        path: "/add-quiz",
+        element: <AddQuiz />,
       },
       {
         path: "/chatbot",
