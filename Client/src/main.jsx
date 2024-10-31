@@ -15,6 +15,7 @@ import ChatbotPage from './Pages/Chatbot/ChatbotPage.jsx';
 import BlogPage from './Pages/Blogs/BlogPage.jsx';
 import CreatePost from './Pages/Blogs/CreatePost.jsx';
 import Dashboard from './components/Dashboard.jsx';
+import AddQnA from './Pages/AddQnA/AddQnA.jsx';
 
 const router = createBrowserRouter([
   {
@@ -50,9 +51,9 @@ const router = createBrowserRouter([
         element: <BlogPage />
       },
       {
-        path: "/create-post",
-        element: <CreatePost />
-      }
+        path: "/add-qna",
+        element: <AddQnA />
+      },
     ],
   }
 ]);
