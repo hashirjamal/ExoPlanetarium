@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "./AddQuiz.module.css";
 import AddQuizQuestions from "./components/AddQuizQuestions";
 import { IoAdd } from "react-icons/io5";
-import AddQuestion from "./components/AddQuestion";
+import { useNavigate } from "react-router-dom";
 
 const DUMMY = [
   {
@@ -21,10 +21,7 @@ const DUMMY = [
 ];
 const AddQuiz = () => {
   const [questions, setQuestions] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const handleModalOpen = () => setModalOpen(true);
-  const handleModalClose = () => setModalOpen(false);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchData = async () => {
       const questionsData = await axios.get(
@@ -46,10 +43,10 @@ const AddQuiz = () => {
           key={question._id}
         />
       ))}
-      <div className={styles.addIcon}  onClick={handleModalOpen}>
+      <div className={styles.addIcon}  onClick={()=>navigate('/add-qna')}>
         <IoAdd />
       </div>
-      {modalOpen && <UpdateModal modalOpen={modalOpen} handleModalClose={handleModalClose}/>}
+      
     </div>
   );
 };

@@ -69,7 +69,7 @@ const Navbar = () => {
   return (
     <>
       <AppBar
-        position="fixed"
+        position=""
         sx={{
           width: { xs: '100%', md: '100%' , lg: '100%' },
           maxWidth: "1500px", 
@@ -107,7 +107,7 @@ const Navbar = () => {
             <Button
               color="inherit"
               component={Link}
-              to="/"
+              to="/home"
               sx={{
                 color: "white",
                 "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },

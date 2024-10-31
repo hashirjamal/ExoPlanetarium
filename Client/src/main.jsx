@@ -17,6 +17,9 @@ import CreatePost from './Pages/Blogs/CreatePost.jsx';
 import Dashboard from './components/Dashboard.jsx';
 import AddQuiz from './Pages/Quiz/AddQuiz.jsx';
 
+import AddQnA from './Pages/AddQnA/AddQnA.jsx';
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -55,9 +58,9 @@ const router = createBrowserRouter([
         element: <BlogPage />
       },
       {
-        path: "/create-post",
-        element: <CreatePost />
-      }
+        path: "/add-qna",
+        element: <AddQnA />
+      },
     ],
   }
 ]);
