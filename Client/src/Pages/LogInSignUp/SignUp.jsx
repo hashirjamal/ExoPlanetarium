@@ -2,10 +2,12 @@ import { Typography } from "@mui/material";
 import LoginCanvas from "../Quiz/components/LoginCanvas.jsx";
 import Card from "./Card.jsx";
 import styles from "./LoginPage.module.css";
+import { ToastContainer } from "react-toastify";
 
 function SignUp() {
     return (
         <div className={styles.loginPage}>
+            <ToastContainer />
             <Typography
                 variant="h6"
                 sx={{

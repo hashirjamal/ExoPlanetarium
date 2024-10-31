@@ -82,8 +82,12 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
         showToast("Sign-up successful! Please log in.", "success");
       }
     } catch (err) {
+      if(err?.response?.data?.message?.includes("E11000")){
+        showToast("Email already registered!", "error");
+      } else{
+        showToast(err.response.data.message || "Signup failed", "error");
+      }
       setLoading(false);
-      showToast(err.response.data.message || "Signup failed", "error");
     }
   };
 
@@ -286,6 +290,14 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
                 Log In
               </Typography>
             </Link>
+            {loading && (
+                <ThreeDots
+                  type="ThreeDots"
+                  color="#00315e"
+                  height={30}
+                  width={30}
+                />
+              )}
             <button
               style={{ textAlign: "center" }}
               className={styles.btn}
