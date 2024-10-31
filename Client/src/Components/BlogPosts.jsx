@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { v4 as uuidv4 } from "uuid";
-import Card from "./Card";
+import PostCard from "./PostCard";
 import axios from "axios";
+import styles from "./BlogPosts.module.css";
 
 function DashPosts() {
   const [allPosts, setAllPosts] = useState([]);
@@ -23,19 +24,20 @@ function DashPosts() {
     getAllPosts();
   }, []);
   return loading ? (
-    <div className="w-full mx-auto my-10 flex justify-center">
+    <div className="w-full mx-auto my-10 flex justify-center items-center h-screen">
       <CircularProgress size="50px" className="" />
     </div>
   ) : (
     <>
-      <div className="blogPost">
-        <h1 className="text-center sm:text-8xl font-bold  text-4xl dark:text-gray-200 py-5">
+      <div className={styles.blogPost}>
+        <h1
+          className={`text-center sm:text-8xl font-bold  text-4xl text-gray-100 py-5 ${styles.articleHeading}`}
+        >
           Articles
         </h1>
         <div className="flex flex-wrap gap-4 justify-center items-center p-5">
-          {allPosts.map((post) => (
-            <Card key={uuidv4()} post={post} />
-          ))}
+          {allPosts &&
+            allPosts.map((post) => <PostCard key={uuidv4()} post={post} />)}
         </div>
       </div>
     </>

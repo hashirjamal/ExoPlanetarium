@@ -11,7 +11,7 @@ function LoginPage() {
         sx={{ color: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "3.5rem"}}
       >
         Ex
-        <img className={styles.spinAnimation} src="../../public/saturn.png" />
+        <img className={styles.spinAnimation} src="/saturn.png" />
         Planetarium
       </Typography>
       <div className={styles.loginCard}>

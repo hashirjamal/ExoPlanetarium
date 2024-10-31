@@ -13,7 +13,7 @@ const HomePageContentComponent = () => {
 
   return (
     <div className="p-4 md:p-10 w-full bg-black">
-      {HomePageContent.map((item, index) => (
+      {HomePageContent?.map((item, index) => (
         <div
           className="my-10 md:my-[-250px] h-auto md:h-[125vh] pl-4 md:pl-24  max-sm:my-[120px]"
           key={index}
@@ -28,8 +28,8 @@ const HomePageContentComponent = () => {
             }}
           >
             <img
-              src={item.image}
-              alt={item.heading}
+              src={item?.image}
+              alt={item?.heading}
               className="w-32 h-32 md:w-52 md:h-52 object-cover transition-transform rounded-full border-black hover:scale-110 cursor-pointer"
             />
             <div
@@ -43,19 +43,19 @@ const HomePageContentComponent = () => {
                 data-aos="zoom-in"
                 className="font-bold text-xl md:text-4xl"
               >
-                {item.heading}
+                {item?.heading}
               </h2>
               <p
                 data-aos="zoom-in"
                 className={`text-sm md:text-xl font-medium ${style.paraFont} tracking-wider`}
               >
-                {item.content}
+                {item?.content}
               </p>
               <button
                 className="bg-black w-28 md:w-40 p-2 rounded-2xl"
-                onClick={() => navigate(item.links)}
+                onClick={() => navigate(item?.links)}
               >
-                {item.button}
+                {item?.button}
               </button>
             </div>
           </div>

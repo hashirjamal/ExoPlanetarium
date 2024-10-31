@@ -8,13 +8,14 @@ function PostCard({ post }) {
           src={post.imageUrl}
           alt={post.imageUrl}
           className="h-[260px] w-full object-cover group-hover:h-[200px] transition-all duration-300 z-20 line-clamp-2"
+          loading="lazy"
         />
       </Link>
       <div className="flex justify-center flex-col relative gap-1 m-3">
-        <h3 className="text-lg font-bold line-clamp-1 dark:text-gray-200 ">
+        <h3 className="text-lg font-bold line-clamp-1 text-gray-200 ">
           {post.title}
         </h3>
-        <span className="text-sm mb-2 italic dark:text-gray-200">
+        <span className="text-sm mb-2 italic text-gray-200">
           {post.category}
         </span>
         <Link

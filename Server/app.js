@@ -14,16 +14,27 @@ const app = express();
 // defining Middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  origin: "http://localhost:5173",
+
+const allowedOrigins = [
+  "http://localhost:4173",
+  "http://localhost:5173",
+  "exo-planetarium-pw2vl33lj-hashir-jamal-khans-projects.vercel.app",
+];
+
+const corsOptions = {
+  origin: allowedOrigins,
+  // origin: process.env.NODE_ENV === "production" ? "http://localhost:4173" : "http://localhost:5173",
   credentials: true,
-}));
+};
+
+app.use(cors(corsOptions));
 app.use(morgan("dev"));
 app.use("/api/auth", authRouter);
 app.use("/api/post", postRouter);
 app.use("/quiz", quizRouter);
-app.use("/chatbot",chatbotRouter);
-app.use("/chatbot",chatbotRouter);
+app.use("/chatbot", chatbotRouter);
+app.use("/chatbot", chatbotRouter);
+app.use("/api/post", postRouter);
 
 // Error Handler of production environment
 app.use((err, req, res, next) => {

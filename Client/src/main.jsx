@@ -8,9 +8,10 @@ import Home from "./Pages/Home/Home.jsx";
 import LoginPage from "./Pages/LogInSignUp/LoginPage.jsx";
 import SignUp from "./Pages/LogInSignUp/SignUp.jsx";
 import ChatbotPage from "./Pages/Chatbot/ChatbotPage.jsx";
-import BlogPage from "./Pages/BlogPage.jsx";
-import Dashboard from "./Components/Dashboard.jsx";
-import CreatePost from "./Pages/CreatePost.jsx";
+import BlogPage from "./Pages/Blogs/BlogPage.jsx";
+import CreatePost from "./Pages/Blogs/CreatePost.jsx";
+import BlogDash from "./Components/BlogDash.jsx";
+import { UserProvider } from "./store/userContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -37,24 +38,24 @@ const router = createBrowserRouter([
         path: "/chatbot",
         element: <ChatbotPage />,
       },
+      {
+        path: "/post/:slug",
+        element: <BlogPage />,
+      },
+      {
+        path: "/blogs",
+        element: <BlogDash />,
+      },
+      {
+        path: "/create-post",
+        element: <CreatePost />,
+      },
     ],
-  },
-  {
-    path: "/post/:slug",
-    element: <BlogPage />,
-  },
-  {
-    path: "/blogs",
-    element: <Dashboard />,
-  },
-  {
-    path: "/create-post",
-    element: <CreatePost />,
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
+  <UserProvider>
     <RouterProvider router={router}></RouterProvider>
-  </StrictMode>
+  </UserProvider>
 );
