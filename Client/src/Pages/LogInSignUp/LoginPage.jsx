@@ -2,10 +2,12 @@ import { Typography } from "@mui/material";
 import LoginCanvas from "../Quiz/components/LoginCanvas.jsx";
 import Card from "./Card.jsx";
 import styles from "./LoginPage.module.css";
+import { ToastContainer } from "react-toastify";
 
 function LoginPage() {
   return (
     <div className={styles.loginPage}>
+      <ToastContainer />
       <Typography
         variant="h6"
         sx={{ color: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "3.5rem"}}
@@ -27,14 +29,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
-// function LoginPage() {
-//   return (
-//     <div>
-//       <ChatbotCanvas />
-//       <Card isLogin={true} params="params" />
-//     </div>
-//   )
-// }
-
-// export default LoginPage;

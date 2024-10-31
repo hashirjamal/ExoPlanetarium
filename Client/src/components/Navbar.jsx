@@ -69,6 +69,11 @@ const Navbar = () => {
             <ListItemText primary="Create Post" />
           </ListItem>
         )}
+        {user?.role === "admin" && (
+          <ListItem button component={Link} to="/add-quiz">
+            <ListItemText primary="Add Question" />
+          </ListItem>
+        )}
         <ListItem button component={Link} to="/chatbot">
           <ListItemText primary="Chatbot" />
         </ListItem>
@@ -152,17 +157,32 @@ const Navbar = () => {
             >
               Blogs
             </Button>
-            <Button
-              color="inherit"
-              component={Link}
-              to="/create-post"
-              sx={{
-                color: "white",
-                "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
-              }}
-            >
-              Create Post
-            </Button>
+           {user?.role === "admin" && (
+             <Button
+             color="inherit"
+             component={Link}
+             to="/create-post"
+             sx={{
+               color: "white",
+               "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+             }}
+           >
+             Create Post
+           </Button>
+           )}
+           {user?.role === "admin" && (
+             <Button
+             color="inherit"
+             component={Link}
+             to="/add-quiz"
+             sx={{
+               color: "white",
+               "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+             }}
+           >
+             Add Question
+           </Button>
+           )}
             <Button
               color="inherit"
               component={Link}

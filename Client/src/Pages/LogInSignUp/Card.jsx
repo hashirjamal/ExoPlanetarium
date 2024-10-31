@@ -7,13 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Card.module.css";
 import { UserContext } from "../../store/userContext";
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Card = ({ isLogin, setPass, params, isSignUp }) => {
   const [loginInfo, setLogInfo] = useState({
     email: "",
     password: "",
     username: "",
-    // user: ""
   });
   const [forgetEmail, setForgetEmail] = useState("");
   const [forgetPass, setForgetPass] = useState("");
@@ -23,6 +24,14 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
   const { setUser } = useContext(UserContext);
   const [alert, setAlert] = useState({ show: false, message: "", type: "" });
   const nav = useNavigate();
+
+  const showToast = (message, type) => {
+    if (type === "success") {
+      toast.success(message);
+    } else if (type === "error") {
+      toast.error(message);
+    }
+  };
 
   const showAlert = (message, type) => {
     setAlert({ show: true, message, type });
@@ -42,22 +51,19 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
         { email, password },
         { withCredentials: true }
       );
-      console.log(response);
       setLoading(false);
-      // showAlert(response.data.message, 'success');
 
       if (response.data.status === "success") {
         setUser(response?.data?.data?.user);
-        console.log(response?.data?.data?.user);
         nav("/home");
+        showToast("Logged in successfully!", "success");
       }
     } catch (err) {
       setLoading(false);
-      // showAlert(err.response.data.message, 'error');
+      showToast(err.response.data.message || "Login failed", "error");
     }
   };
 
-  // Signup function
   const onSignUp = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -69,14 +75,15 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
         { email, username, password },
         { withCredentials: true }
       );
-      console.log(response);
       setLoading(false);
+
       if (response.data.status === "success") {
         nav("/");
+        showToast("Sign-up successful! Please log in.", "success");
       }
     } catch (err) {
       setLoading(false);
-      console.log(err);
+      showToast(err.response.data.message || "Signup failed", "error");
     }
   };
 
