@@ -1,13 +1,9 @@
-import React from 'react'; // Add this line
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App.jsx';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import './index.css';
-import QuizPage from './Pages/Quiz/QuizPage.jsx';
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App.jsx";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./index.css";
+import QuizPage from "./Pages/Quiz/QuizPage.jsx";
 import Home from "./Pages/Home/Home.jsx";
 import LoginPage from './Pages/LogInSignUp/LoginPage.jsx';
 import SignUp from './Pages/LogInSignUp/SignUp.jsx';
@@ -19,15 +15,18 @@ import AddQuiz from './Pages/Quiz/AddQuiz.jsx';
 
 import AddQnA from './Pages/AddQnA/AddQnA.jsx';
 
+import BlogDash from "./Components/BlogDash.jsx";
+import { UserProvider } from "./store/userContext.jsx";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <LoginPage />
+    element: <LoginPage />,
   },
   {
     path: "/signup",
-    element: <SignUp />
+    element: <SignUp />,
   },
   {
     path: "/",
@@ -47,26 +46,30 @@ const router = createBrowserRouter([
       },
       {
         path: "/chatbot",
-        element: <ChatbotPage />
-      },
-      {
-        path: "/blogs",
-        element: <Dashboard/>
+        element: <ChatbotPage />,
       },
       {
         path: "/post/:slug",
-        element: <BlogPage />
+        element: <BlogPage />,
+      },
+      {
+        path: "/blogs",
+        element: <BlogDash />,
       },
       {
         path: "/add-qna",
         element: <AddQnA />
       },
+        {
+        path: "/create-post",
+        element: <CreatePost />,
+      },
     ],
-  }
+  },
 ]);
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+createRoot(document.getElementById("root")).render(
+  <UserProvider>
     <RouterProvider router={router}></RouterProvider>
-  </StrictMode>,
+  </UserProvider>
 );

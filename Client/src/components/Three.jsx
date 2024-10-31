@@ -22,14 +22,13 @@ const Model = React.forwardRef(({ onMove }, ref) => {
   );
 
   useEffect(() => {
-    // Apply the textures to the model's meshes
     obj.traverse((child) => {
       if (child.isMesh) {
-        child.material.map = baseMap; // Base color (diffuse)
-        child.material.normalMap = normalMap; // Normal map for surface detail
-        child.material.roughnessMap = roughnessMap; // Roughness map for material shininess
-        child.material.metalnessMap = metallicMap; // Metalness map for metallic reflection
-        child.material.needsUpdate = true; // Ensure the material updates after setting the textures
+        child.material.map = baseMap;
+        child.material.normalMap = normalMap;
+        child.material.roughnessMap = roughnessMap;
+        child.material.metalnessMap = metallicMap;
+        child.material.needsUpdate = true;
       }
     });
   }, [obj, baseMap, normalMap, roughnessMap, metallicMap]);
@@ -39,8 +38,8 @@ const Model = React.forwardRef(({ onMove }, ref) => {
       object={obj}
       scale={0.35}
       position={[-3.7, -0.75, 0]}
-      onClick={onMove} // Attach the click event
-      ref={ref} // Forward the ref to the primitive object
+      onClick={onMove}
+      ref={ref}
       rotation={[0, 0.5, 0]}
     />
   );
@@ -80,7 +79,7 @@ export default function Three({ move, canvasKey }) {
       t1.to(
         rocketRef.current.position,
         {
-          y: 1.5, // Move upwards
+          y: 1.5,
           duration: 4,
           ease: "power1.inOut",
         },
@@ -135,21 +134,18 @@ export default function Three({ move, canvasKey }) {
       <ambientLight intensity={0.5} />
       <directionalLight position={[0, 1, 5]} intensity={2} />
 
-      {/* Stars background */}
       <Stars ref={starsRef} />
-      {/* Left bottom planet */}
+
       <mesh position={[-4, -3, 0]}>
         <sphereGeometry args={[2.3, 32, 32]} />
         <meshStandardMaterial map={texture1} />
       </mesh>
 
-      {/* Right bottom planet */}
       <mesh position={[4, -3, 0]}>
         <sphereGeometry args={[2.3, 32, 32]} />
         <meshStandardMaterial map={texture2} />
       </mesh>
 
-      {/* Rocket (Model) */}
       <Model ref={rocketRef} onMove={() => {}} />
     </>
   );
