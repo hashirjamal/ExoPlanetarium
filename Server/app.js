@@ -5,16 +5,25 @@ const cors = require("cors");
 const authRouter = require("./Router/authRoute");
 const quizRouter = require("./Router/quizRoute");
 const postRouter = require("./Router/postRoute");
+
+const chatbotRouter = require("./Router/chatbotRoute");
+// const chatbotRouter = require("./Router/chatbotRoute")
+
 const app = express();
 
 // defining Middlewares
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
 app.use(morgan("dev"));
 app.use("/api/auth", authRouter);
 app.use("/api/post", postRouter);
 app.use("/quiz", quizRouter);
+app.use("/chatbot",chatbotRouter);
+app.use("/chatbot",chatbotRouter);
 
 // Error Handler of production environment
 app.use((err, req, res, next) => {

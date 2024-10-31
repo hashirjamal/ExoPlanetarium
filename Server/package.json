@@ -7,7 +7,10 @@
     "start": "nodemon server.js"
   },
   "dependencies": {
+    "@huggingface/inference": "^2.8.1",
+    "@pinecone-database/pinecone": "^3.0.3",
     "axios": "^1.7.7",
+    "bcryptjs": "^2.4.3",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -20,5 +23,10 @@
     "nodemailer": "^6.9.15",
     "nodemon": "^3.1.7",
     "validator": "^13.12.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
   }
 }

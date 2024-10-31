@@ -1,0 +1,15 @@
+/* TransitionPage.module.css */
+.transitionPage {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: red; /* Change this to your preferred color */
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+.hidden {
+  opacity: 0; /* Make it invisible with fading effect */
+}

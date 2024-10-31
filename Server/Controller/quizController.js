@@ -1,6 +1,8 @@
 const Quiz = require("../Model/quizModel");
 const asyncErrorHandler = require("../Utils/asyncErrorHandler");
 const CustomError = require("../Utils/CustomErrorHandler");
+const User= require("../Model/userModel");
+const jwt = require("jsonwebtoken");
 
 // Add Question functionality
 exports.addQuestion = asyncErrorHandler(async (req, res, next) => {
@@ -55,4 +57,52 @@ exports.updateQuestion = asyncErrorHandler(async (req, res, next) => {
       question,
     },
   });
+});
+
+// Get High Score functionality
+exports.getHighScore = asyncErrorHandler(async (req, res, next) => {
+  console.log(req.cookies);
+  const token = req.cookies.jwt;
+  console.log(token);
+  if (!token) {
+    return next(new CustomError("Please provide token", 404));
+  }
+  const decoded = jwt.verify(token, process.env.SECRET_STR);
+  try {
+    console.log(decoded);
+    const result = await User.findById(decoded.id);
+    console.log(result);
+    const highScore = result.hiScore;
+    res.status(200).json({
+      status: "success",
+      data: {
+        highScore,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+exports.saveHighScore = asyncErrorHandler(async (req, res, next) => {
+  const token = req.cookies.jwt;
+  console.log(token);
+  if (!token) {
+    return next(new CustomError("Please provide token", 404));
+  }
+  const decoded = jwt.verify(token, process.env.SECRET_STR);
+  try {
+    const result = await User.findByIdAndUpdate(decoded.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json({
+      status: "success",
+      data: {
+        result,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+  }
 });

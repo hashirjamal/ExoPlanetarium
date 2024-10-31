@@ -1,12 +1,17 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+<<<<<<< HEAD
 const bycrypt = require("bcrypt");
 const crypto = require("crypto");
+=======
+const bycrypt = require("bcryptjs");
+>>>>>>> 838451d6923dc56d3e4f5f3c2fdb4b0535eb3f92
 const userSchema = mongoose.Schema(
   {
     username: {
       type: String,
       required: [true, "User name is a required field"],
+      unique: true
     },
     email: {
       type: String,
@@ -19,21 +24,15 @@ const userSchema = mongoose.Schema(
       required: [true, "Password is a required field"],
       select: false,
     },
-    confirmPassword: {
-      type: String,
-      required: [true, "Please confirm your password"],
-      validate: {
-        validator: function (val) {
-          return val === this.password;
-        },
-        message: "Password and confirm password does not match",
-      },
+    quizScore: {
+      type: Number
     },
     role: {
       type: String,
       enum: ["user", "admin"],
       default: "user",
     },
+<<<<<<< HEAD
     photo: {
       type: String,
       default:
@@ -46,6 +45,12 @@ const userSchema = mongoose.Schema(
     },
     passwordResetToken: String,
     passwordResetTokenExpires: Date,
+=======
+    hiScore:{
+      type: Number,
+      default: 0
+    }
+>>>>>>> 838451d6923dc56d3e4f5f3c2fdb4b0535eb3f92
   },
   {
     timestamps: true,
