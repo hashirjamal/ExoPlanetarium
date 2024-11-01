@@ -4,6 +4,7 @@ import styles from "./Chatbot.module.css";
 import axios from "axios";
 import gif from "../../assets/output-onlinegiftools.gif";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { toast } from "react-toastify";
 
 export default function Chatbot() {
     const [userPrompt, setUserPrompt] = useState("");
@@ -14,6 +15,10 @@ export default function Chatbot() {
     const handleSubmit = async (e) => {
         console.log(userPrompt);
         e.preventDefault();
+        if(!userPrompt){
+            toast.error("Empty messages are not allowed!");
+            return;
+        }
         setisLoading(true);
         try {
             setAllMsgs((p) => {

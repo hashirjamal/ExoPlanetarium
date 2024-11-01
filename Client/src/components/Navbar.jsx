@@ -84,7 +84,7 @@ const Navbar = () => {
   return (
     <>
       <AppBar
-        position=""
+        position="fixed"
         sx={{
           width: { xs: "100%", md: "100%", lg: "100%" },
           margin: "0 auto",

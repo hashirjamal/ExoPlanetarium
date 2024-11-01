@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify";
 function LoginPage() {
   return (
     <div className={styles.loginPage}>
-      <ToastContainer />
+      <ToastContainer theme="dark" />
       <Typography
         variant="h6"
         sx={{ color: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "3.5rem"}}
