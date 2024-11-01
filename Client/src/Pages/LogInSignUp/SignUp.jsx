@@ -21,11 +21,9 @@ function SignUp() {
                 Planetarium
             </Typography>
             <div className={styles.loginCard}>
-                <div className="w-[50%] ">
-                    <Card isSignUp={true} params="params" />
-                    <div className="h-full w-full translate-x-full">
-                        <LoginCanvas isSignUp={true} />
-                    </div>
+                <Card isSignUp={true} params="params" />
+                <div className={styles.rightContainer}>
+                    <LoginCanvas isSignUp={true} />
                 </div>
             </div>
         </div>
