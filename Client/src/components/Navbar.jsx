@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import {
   AppBar,
@@ -11,12 +11,14 @@ import {
   ListItem,
   ListItemText,
 } from "@mui/material";
+import { UserContext } from "../store/userContext";
 import MenuIcon from "@mui/icons-material/Menu";
 import style from "../Pages/Home/Home.module.css";
 
 const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,6 +64,11 @@ const Navbar = () => {
         <ListItem button component={Link} to="/blogs">
           <ListItemText primary="Blogs" />
         </ListItem>
+        {user?.role === "admin" && (
+          <ListItem button component={Link} to="/create-post">
+            <ListItemText primary="Create Post" />
+          </ListItem>
+        )}
         <ListItem button component={Link} to="/chatbot">
           <ListItemText primary="Chatbot" />
         </ListItem>
@@ -72,10 +79,9 @@ const Navbar = () => {
   return (
     <>
       <AppBar
-        position="fixed"
+        position=""
         sx={{
           width: { xs: "100%", md: "100%", lg: "100%" },
-          maxWidth: "1500px",
           margin: "0 auto",
           padding: "10px",
           backgroundColor: scrollPosition
@@ -105,7 +111,7 @@ const Navbar = () => {
             Ex
             <img
               className={style.spinAnimation}
-              src="../../public/saturn.png"
+              src="/saturn.png"
               alt="Saturn Logo"
               style={{ height: "25px" }}
             />
@@ -116,7 +122,7 @@ const Navbar = () => {
             <Button
               color="inherit"
               component={Link}
-              to="/"
+              to="/home"
               sx={{
                 color: "white",
                 "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
@@ -145,6 +151,17 @@ const Navbar = () => {
               }}
             >
               Blogs
+            </Button>
+            <Button
+              color="inherit"
+              component={Link}
+              to="/create-post"
+              sx={{
+                color: "white",
+                "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+              }}
+            >
+              Create Post
             </Button>
             <Button
               color="inherit"

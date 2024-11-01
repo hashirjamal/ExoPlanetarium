@@ -2,6 +2,7 @@ const User = require("../Model/userModel");
 const jwt = require("jsonwebtoken");
 const asyncErrorHandler = require("../Utils/asyncErrorHandler");
 const CustomError = require("../Utils/CustomErrorHandler");
+
 // functionlity for generating generating
 const signToken = (id) => {
   return jwt.sign({ id }, process.env.SECRET_STR, {
@@ -23,7 +24,7 @@ const createSendResponse = (user, statusCode, res) => {
     },
   });
 };
-// Sign Up functionality 
+// Sign Up functionality
 exports.signUp = asyncErrorHandler(async (req, res, next) => {
   console.log(req.body);
 

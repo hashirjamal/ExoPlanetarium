@@ -3,9 +3,6 @@ import LoginCanvas from "../Quiz/components/LoginCanvas.jsx";
 import Card from "./Card.jsx";
 import styles from "./LoginPage.module.css";
 
-// import ChatbotCanvas from "../Chatbot/ChatbotCanvas";
-// import Card from "./Card";
-
 function SignUp() {
   return (
     <div className={styles.loginPage}>

@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import logo from "../../public/saturn.png";
 
 const Footer = () => {
   return (
@@ -21,7 +20,7 @@ const Footer = () => {
         }}
       >
         <img
-          src={logo}
+          src="/saturn.png"
           alt="Exoplanetarium Logo"
           style={{ width: "50px", marginBottom: "10px" }}
         />
