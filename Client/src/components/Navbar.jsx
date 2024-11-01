@@ -14,6 +14,7 @@ import {
 import { UserContext } from "../store/userContext";
 import MenuIcon from "@mui/icons-material/Menu";
 import style from "../Pages/Home/Home.module.css";
+import zIndex from "@mui/material/styles/zIndex";
 
 const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(false);
@@ -52,7 +53,7 @@ const Navbar = () => {
         backgroundColor: "rgba(0, 0, 0, 0.8)",
         color: "white",
         height: "100%",
-      }}
+        }}
     >
       <List>
         <ListItem button component={Link} to="/home">
