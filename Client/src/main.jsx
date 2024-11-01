@@ -10,11 +10,8 @@ import SignUp from "./Pages/LogInSignUp/SignUp.jsx";
 import ChatbotPage from "./Pages/Chatbot/ChatbotPage.jsx";
 import BlogPage from "./Pages/Blogs/BlogPage.jsx";
 import CreatePost from "./Pages/Blogs/CreatePost.jsx";
-// import Dashboard from './components/Dashboard.jsx';
 import AddQuiz from "./Pages/Quiz/AddQuiz.jsx";
-
 import AddQnA from "./Pages/AddQnA/AddQnA.jsx";
-
 import BlogDash from "./Components/BlogDash.jsx";
 import { UserProvider } from "./store/userContext.jsx";
 
