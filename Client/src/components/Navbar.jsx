@@ -31,7 +31,10 @@ const Navbar = () => {
   }, []);
 
   const toggleDrawer = (open) => (event) => {
-    if (event.type === "keydown" && (event.key === "Tab" || event.key === "Shift")) {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
       return;
     }
     setDrawerOpen(open);
@@ -50,7 +53,7 @@ const Navbar = () => {
       }}
     >
       <List>
-        <ListItem button component={Link} to="/">
+        <ListItem button component={Link} to="/home">
           <ListItemText primary="Home" />
         </ListItem>
         <ListItem button component={Link} to="/exoplanet-quiz">
@@ -71,15 +74,21 @@ const Navbar = () => {
       <AppBar
         position="fixed"
         sx={{
-          width: { xs: '100%', md: '100%' , lg: '100%' },
-          maxWidth: "1500px", 
+          width: { xs: "100%", md: "100%", lg: "100%" },
+          maxWidth: "1500px",
           margin: "0 auto",
           padding: "10px",
-          backgroundColor: scrollPosition ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 1)",
+          backgroundColor: scrollPosition
+            ? "rgba(255, 255, 255, 0.2)"
+            : "rgba(0, 0, 0, 1)",
           backdropFilter: scrollPosition ? "blur(8px)" : "none",
-          borderBottom: scrollPosition ? "none" : "1px solid rgba(255, 255, 255, 0.3)",
+          borderBottom: scrollPosition
+            ? "none"
+            : "1px solid rgba(255, 255, 255, 0.3)",
           transition: "background-color 0.3s ease, backdrop-filter 0.3s ease",
-          boxShadow: scrollPosition ? "0px 4px 20px rgba(0, 0, 0, 0.1)" : "none",
+          boxShadow: scrollPosition
+            ? "0px 4px 20px rgba(0, 0, 0, 0.1)"
+            : "none",
         }}
       >
         <Toolbar sx={{ justifyContent: "space-between" }}>
@@ -173,7 +182,7 @@ const Navbar = () => {
             backgroundColor: "rgba(0, 0, 0, 0.8)",
             color: "white",
             marginTop: "64px",
-            width: "120px", 
+            width: "120px",
           },
         }}
       >
