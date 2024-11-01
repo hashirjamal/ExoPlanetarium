@@ -4,10 +4,9 @@ const authController = require("../Controller/authController");
 
 // Authentication Routes
 authRouter.route("/signUp").post(authController.signUp);
-// authRouter
-//   .route("/resetPassword/:resetToken")
-//   .post(authController.);
-// authRouter.route("/forgetPassword").post(authController.forgetPassword);
+authRouter.route("/forgetPassword").post(authController.forgotPassword);
 authRouter.route("/signIn").post(authController.signIn);
+authRouter.route("/verifyOtp").post(authController.verifyOtp);
+authRouter.route("/resetPassword").patch(authController.resetPassword);
 
 module.exports = authRouter;
