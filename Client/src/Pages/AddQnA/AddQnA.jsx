@@ -71,7 +71,7 @@ export default function AddQnA() {
 
   return (
     <div
-      className="bg-[#0c0b0b] min-h-[91vh]  text-white flex flex-col 
+      className="bg-[#0c0b0b] mt-[5rem] min-h-[100vh] text-white flex flex-col 
     items-center "
     >
       <div className="self-start ml-40">
