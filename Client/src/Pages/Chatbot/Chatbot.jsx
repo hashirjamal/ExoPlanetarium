@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Message from "./Message";
 import styles from "./Chatbot.module.css";
 import axios from "axios";
@@ -11,9 +11,15 @@ export default function Chatbot() {
     const [allMsgs, setAllMsgs] = useState([]);
     const [convHistory, setConvHistory] = useState([]);
     const [isLoading, setisLoading] = useState(false);
+    const scrollRef = useRef(null);
+
+    useEffect(() => {
+        if(scrollRef.current){
+            scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+        }
+    }, [allMsgs]);
 
     const handleSubmit = async (e) => {
-        console.log(userPrompt);
         e.preventDefault();
         if(!userPrompt){
             toast.error("Empty messages are not allowed!");
@@ -75,9 +81,8 @@ export default function Chatbot() {
             {/* Message container, grows to fill the available space */}
             <div
                 className={`${styles.scrollable} h-64 flex-grow overflow-y-auto `}
+                ref={scrollRef}
             >
-                {/* <Message isUser={true} />
-    <Message isUser={false} /> */}
                 <Message
                     message="Welcome to ExoPlant. You AI assistant to ask any thing related ExoPlanets"
                     role="assistant"
