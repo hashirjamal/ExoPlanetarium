@@ -8,5 +8,6 @@ authRouter.route("/forgetPassword").post(authController.forgotPassword);
 authRouter.route("/signIn").post(authController.signIn);
 authRouter.route("/verifyOtp").post(authController.verifyOtp);
 authRouter.route("/resetPassword").patch(authController.resetPassword);
+authRouter.route("/logout").post(authController.logout);
 
 module.exports = authRouter;

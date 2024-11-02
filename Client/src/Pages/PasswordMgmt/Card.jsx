@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
@@ -6,24 +6,17 @@ import { ThreeDots } from "react-loader-spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Card.module.css";
-import { UserContext } from "../../store/userContext";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
-const Card = ({ isLogin, setPass, params, isSignUp }) => {
-  const [loginInfo, setLogInfo] = useState({
-    email: "",
-    password: "",
-    username: "",
-  });
+const Card = () => {
   const [forgetEmail, setForgetEmail] = useState("");
-  const [otp, setOtp] = useState(""); // State for OTP
-  const [newPassword, setNewPassword] = useState(""); // New password
-  const [confirmPassword, setConfirmPassword] = useState(""); // Confirm new password
-  const [loading, setLoading] = useState(false);
+  const [otp, setOtp] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [pShow, setPShow] = useState(false);
-  const { setUser } = useContext(UserContext);
-  const [step, setStep] = useState(1); // Track the current step of the process
+  const [cpShow, setCpShow] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [step, setStep] = useState(1);
   const nav = useNavigate();
 
   const showToast = (message, type) => {
@@ -46,7 +39,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
       setLoading(false);
       if (response.data.status === "success") {
         showToast(response.data.message, "success");
-        setStep(2); // Move to the next step for OTP
+        setStep(2);
       }
     } catch (err) {
       console.log(err);
@@ -55,7 +48,6 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
         "This email is not registered. Please enter your registered Email",
           "error"
         );
-      // }
     }
   };
 
@@ -63,7 +55,6 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
     e.preventDefault();
     setLoading(true);
     
-    // Assuming you have a backend API to verify the OTP
     try {
       const response = await axios.post(
         "http://localhost:3000/api/auth/verifyOtp",
@@ -72,7 +63,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
       setLoading(false);
       if (response.data.status === "success") {
         showToast("OTP verified successfully!", "success");
-        setStep(3); // Move to the next step for new password
+        setStep(3);
       } else {
         showToast("Invalid OTP. Please try again.", "error");
       }
@@ -93,7 +84,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
           { email: forgetEmail, password: newPassword }
         );
         setLoading(false);
-        nav("/"); // Redirect to login after successful reset
+        nav("/");
         showToast("Password Successfully updated", "success");
       } catch (err) {
         setLoading(false);
@@ -108,9 +99,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
   return (
     <div>
       <div
-        className={`${
-          isSignUp ? styles.signupcontainer : styles.logincontainer
-        }`}
+        className={styles.logincontainer}
       >
         <Typography
           variant="h4"
@@ -122,11 +111,7 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
             marginBottom: "20px",
           }}
         >
-          {isLogin
-            ? "Log In"
-            : isSignUp
-            ? "Sign Up"
-            : !setPass && "Reset Password"}
+          {step === 1 ? "Forgot Password" : step === 2 ? "Enter OTP" : step === 3 ? "Reset Password" : null}
         </Typography>
         {step === 1 && (
           <form className={styles.form} onSubmit={onSendEmail}>
@@ -141,6 +126,14 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
                 onChange={(e) => setForgetEmail(e.target.value)}
               />
             </div>
+            <Link className={styles.anchor} to="/">
+          <Typography
+            variant="body2"
+            styles={{ color: "#08457e", marginRight: "1rem" }}
+          >
+            Back to Login
+          </Typography>
+        </Link>
             <div className={styles.loaderContainer}>
               {loading && (
                 <ThreeDots
@@ -188,28 +181,45 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
 
         {step === 3 && (
           <form className={styles.form} onSubmit={onResetPassword}>
+
             <div className={styles.inpBox}>
-              <label htmlFor="newPassword">New Password</label>
-              <input
-                type="password"
-                id="newPassword"
-                name="newPassword"
-                placeholder="Enter your new password"
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-              />
+              <label htmlFor="password">New Password</label>
+              <div id={styles.passBox}>
+                <input
+                  type={pShow ? "text" : "password"}
+                  id="newPassword"
+                  name="newPassword"
+                  placeholder="Type your new password"
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                />
+                <FontAwesomeIcon
+                  icon={pShow ? faEyeSlash : faEye}
+                  onClick={() => setPShow((prev) => !prev)}
+                  id={styles.toggle}
+                />
+              </div>
             </div>
+
             <div className={styles.inpBox}>
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <input
-                type="password"
-                id="confirmPassword"
-                name="confirmPassword"
-                placeholder="Confirm your new password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-              />
+              <label htmlFor="password">Confirm Password</label>
+              <div id={styles.passBox}>
+                <input
+                  type={cpShow ? "text" : "password"}
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  placeholder="Confirm your new password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                />
+                <FontAwesomeIcon
+                  icon={cpShow ? faEyeSlash : faEye}
+                  onClick={() => setCpShow((prev) => !prev)}
+                  id={styles.toggle}
+                />
+              </div>
             </div>
+
             <div className={styles.loaderContainer}>
               {loading && (
                 <ThreeDots

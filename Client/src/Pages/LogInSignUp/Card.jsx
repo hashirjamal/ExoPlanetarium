@@ -8,7 +8,6 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Card.module.css";
 import { UserContext } from "../../store/userContext";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 const Card = ({ isLogin, setPass, params, isSignUp }) => {
   const [loginInfo, setLogInfo] = useState({
@@ -16,9 +15,6 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
     password: "",
     username: "",
   });
-  const [forgetEmail, setForgetEmail] = useState("");
-  const [forgetPass, setForgetPass] = useState("");
-  const [confirmPass, setConfirmPass] = useState("");
   const [loading, setLoading] = useState(false);
   const [pShow, setPShow] = useState(false);
   const { setUser } = useContext(UserContext);
@@ -88,54 +84,6 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
         showToast(err.response.data.message || "Signup failed", "error");
       }
       setLoading(false);
-    }
-  };
-
-  const onSetPass = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    if (forgetPass === confirmPass) {
-      try {
-        const response = await axios.patch(
-          `http://localhost:2000/users/resetPassword/${params}`,
-          {
-            updatedPassword: forgetPass,
-          }
-        );
-        setLoading(false);
-        showAlert("Password Successfully updated", "success");
-      } catch (err) {
-        setLoading(false);
-        showAlert(err.response.data.message, "error");
-      }
-    } else {
-      setLoading(false);
-      showAlert("Passwords do not match", "error");
-    }
-  };
-
-  const onSendEmail = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    const email = forgetEmail;
-
-    try {
-      const response = await axios.post(
-        "http://localhost:2000/users/forgetPassword",
-        { email }
-      );
-      setLoading(false);
-      if (response.data.status === "success") {
-        showAlert(response.data.message, "success");
-      }
-    } catch (err) {
-      setLoading(false);
-      if (err.response.data.status === "fail") {
-        showAlert(
-          "This email is not registered. Please enter your registered Email",
-          "error"
-        );
-      }
     }
   };
 
@@ -230,9 +178,6 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
                 Forgot Password?
               </Typography>
             </Link>
-            {/* <a className={styles.anchor} href="/forget-pass">
-                            <Typography variant='body2' styles={{ color: "#08457e", marginRight: '1rem' }}>Forgot Password?</Typography>
-                        </a> */}
             <div className={styles.loaderContainer}>
               {loading && (
                 <ThreeDots
@@ -312,58 +257,6 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
               disabled={loading}
             >
               Sign Up
-            </button>
-          </form>
-        )}
-        {!setPass && !isLogin && !isSignUp && (
-          <form className={styles.form} onSubmit={onSendEmail}>
-            <div
-              className={styles.inpBox}
-              style={{
-                borderBottom: "none",
-                margin: "1rem 0",
-                textAlign: "center",
-                backgroundColor: "#e4e4fd",
-                padding: "1rem",
-                borderRadius: "8px",
-              }}
-            >
-              <Typography variant="body1">
-                Please enter your registered email address. You will receive a
-                password reset link at that
-              </Typography>
-            </div>
-            <div className={styles.inpBox}>
-              <label htmlFor="email">Email Address</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Type your e-mail address"
-                value={forgetEmail}
-                onChange={(e) => setForgetEmail(e.target.value)}
-              />
-            </div>
-            <Link className={styles.anchor} to="/">
-              <Typography
-                variant="body2"
-                styles={{ color: "#08457e", marginRight: "1rem" }}
-              >
-                Back to Log In
-              </Typography>
-            </Link>
-            <div className={styles.loaderContainer}>
-              {loading && (
-                <ThreeDots
-                  type="ThreeDots"
-                  color="#00315e"
-                  height={30}
-                  width={30}
-                />
-              )}
-            </div>
-            <button className={styles.btn} disabled={loading}>
-              Send
             </button>
           </form>
         )}

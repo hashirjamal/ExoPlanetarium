@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -14,12 +14,22 @@ import {
 import { UserContext } from "../store/userContext";
 import MenuIcon from "@mui/icons-material/Menu";
 import style from "../Pages/Home/Home.module.css";
-import zIndex from "@mui/material/styles/zIndex";
+import axios from "axios";
 
 const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
+
+  async function handleLogout() {
+    try {
+        await axios.post("http://localhost:3000/api/auth/logout", {}, { withCredentials: true });
+        navigate("/");
+    } catch (error) {
+        console.error("Logout failed", error);
+    }
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,6 +87,9 @@ const Navbar = () => {
         )}
         <ListItem button component={Link} to="/chatbot">
           <ListItemText primary="Chatbot" />
+        </ListItem>
+        <ListItem button onClick={handleLogout}>
+          <ListItemText primary="Logout" />
         </ListItem>
       </List>
     </div>
@@ -194,6 +207,16 @@ const Navbar = () => {
               }}
             >
               Chatbot
+            </Button>
+            <Button
+              color="inherit"
+              sx={{
+                color: "white",
+                "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+              }}
+              onClick={handleLogout}
+            >
+              Logout
             </Button>
           </div>
 
