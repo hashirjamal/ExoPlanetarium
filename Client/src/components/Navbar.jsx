@@ -20,11 +20,12 @@ const Navbar = () => {
   const [scrollPosition, setScrollPosition] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const navigate = useNavigate();
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   async function handleLogout() {
     try {
         await axios.post("http://localhost:3000/api/auth/logout", {}, { withCredentials: true });
+        setUser(null);
         navigate("/");
     } catch (error) {
         console.error("Logout failed", error);
