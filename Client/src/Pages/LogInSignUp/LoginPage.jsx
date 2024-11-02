@@ -7,20 +7,31 @@ import { ToastContainer } from "react-toastify";
 function LoginPage() {
   return (
     <div className={styles.loginPage}>
-      <ToastContainer />
+      <ToastContainer theme="dark" />
       <Typography
         variant="h6"
-        sx={{ color: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "3.5rem"}}
+        sx={{
+          color: "white",
+          fontFamily: "'Orbitron', sans-serif",
+          fontSize: {
+            lg: "3.5rem",
+            md: "3rem",
+            sm: "2.5rem",
+            xs: "2rem",
+          },
+        }}
       >
         Ex
-        <img className={styles.spinAnimation} src="/saturn.png" />
+        <img
+          className={styles.spinAnimation}
+          src="/saturn.png"
+          alt="spinning planet"
+        />
         Planetarium
       </Typography>
       <div className={styles.loginCard}>
-        <div className="w-[50%]">
-          <div className="h-full w-full">
-            <LoginCanvas />
-          </div>
+        <div className={styles.leftContainer}>
+          <LoginCanvas />
         </div>
         <Card isLogin={true} params="params" />
       </div>
