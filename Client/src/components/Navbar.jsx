@@ -89,7 +89,7 @@ const Navbar = () => {
         <ListItem button component={Link} to="/chatbot">
           <ListItemText primary="Chatbot" />
         </ListItem>
-        <ListItem button onClick={handleLogout}>
+        <ListItem button style={{cursor: "pointer"}} onClick={handleLogout}>
           <ListItemText primary="Logout" />
         </ListItem>
       </List>
@@ -211,6 +211,7 @@ const Navbar = () => {
             </Button>
             <Button
               color="inherit"
+              component={Button}
               sx={{
                 color: "white",
                 "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
