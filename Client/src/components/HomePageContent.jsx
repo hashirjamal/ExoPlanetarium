@@ -1,8 +1,8 @@
 import { HomePageContent } from "../utils/constants";
 import style from "../Pages/Home/Home.module.css";
 import { useNavigate } from "react-router-dom";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useEffect } from "react";
 
 const HomePageContentComponent = () => {
@@ -20,7 +20,7 @@ const HomePageContentComponent = () => {
         >
           <div
             data-aos="fade-up"
-            className="flex flex-col md:flex-row bg-slate-900 text-white p-4 md:p-10 rounded-2xl opacity-90 gap-4 md:gap-40 w-full md:w-[80vw] h-auto shadow-slate-50 drop-shadow-xl"
+            className="flex flex-col md:flex-row bg-[#06080d] text-white p-4 md:p-10 rounded-2xl opacity-90 gap-4 md:gap-40 w-full md:w-[80vw] h-auto shadow-slate-50 drop-shadow-xl"
             style={{
               flexDirection: index % 2 === 0 ? "row" : "row-reverse",
               alignItems: "center",
@@ -39,10 +39,7 @@ const HomePageContentComponent = () => {
                 marginRight: index % 2 !== 0 ? "20px" : "0",
               }}
             >
-              <h2
-                data-aos="zoom-in"
-                className="font-bold text-xl md:text-4xl"
-              >
+              <h2 data-aos="zoom-in" className="font-bold text-xl md:text-4xl">
                 {item?.heading}
               </h2>
               <p

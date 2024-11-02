@@ -2,23 +2,36 @@ import { Typography } from "@mui/material";
 import LoginCanvas from "../Quiz/components/LoginCanvas.jsx";
 import Card from "./Card.jsx";
 import styles from "./LoginPage.module.css";
+import { ToastContainer } from "react-toastify";
 
 function LoginPage() {
   return (
     <div className={styles.loginPage}>
+      <ToastContainer theme="dark" />
       <Typography
         variant="h6"
-        sx={{ color: "white", fontFamily: "'Orbitron', sans-serif", fontSize: "3.5rem"}}
+        sx={{
+          color: "white",
+          fontFamily: "'Orbitron', sans-serif",
+          fontSize: {
+            lg: "3.5rem",
+            md: "3rem",
+            sm: "2.5rem",
+            xs: "2rem",
+          },
+        }}
       >
         Ex
-        <img className={styles.spinAnimation} src="../../public/saturn.png" />
+        <img
+          className={styles.spinAnimation}
+          src="/saturn.png"
+          alt="spinning planet"
+        />
         Planetarium
       </Typography>
       <div className={styles.loginCard}>
-        <div className="w-[50%]">
-          <div className="h-full w-full">
-            <LoginCanvas />
-          </div>
+        <div className={styles.leftContainer}>
+          <LoginCanvas />
         </div>
         <Card isLogin={true} params="params" />
       </div>
@@ -27,14 +40,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
-// function LoginPage() {
-//   return (
-//     <div>
-//       <ChatbotCanvas />
-//       <Card isLogin={true} params="params" />
-//     </div>
-//   )
-// }
-
-// export default LoginPage;

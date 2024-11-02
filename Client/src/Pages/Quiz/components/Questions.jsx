@@ -27,14 +27,10 @@ const Questions = ({
   handlePage,
   handleCanvasKey,
   data,
-  fetching
+  fetching,
 }) => {
-  
-  
   const [clicked, setClicked] = useState(false);
   const optionsRef = useRef([]);
-
-  
 
   const checkAnswer = (event) => {
     setClicked(true);

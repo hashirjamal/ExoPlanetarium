@@ -175,3 +175,14 @@ select {
   color: black;
 }
 
+
+@media screen and (max-width:880px) {
+  .logincontainer{
+    width: 100%;
+    border-radius: 20px;
+  }
+  .signupcontainer{
+    width: 100%;
+    border-radius: 20px;
+  }
+}
