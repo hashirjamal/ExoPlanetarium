@@ -4,6 +4,7 @@ import styles from "./AddQuiz.module.css";
 import AddQuizQuestions from "./components/AddQuizQuestions";
 import { IoAdd } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
 
 const DUMMY = [
   {
@@ -22,6 +23,9 @@ const DUMMY = [
 const AddQuiz = () => {
   const [questions, setQuestions] = useState([]);
   const navigate = useNavigate();
+
+  const [updatePage,setUpdatePage] = useState(false);
+
   useEffect(() => {
     const fetchData = async () => {
       const questionsData = await axios.get(
@@ -32,15 +36,17 @@ const AddQuiz = () => {
     };
     fetchData();
     // console.log(questions);
-  }, []);
+  }, [updatePage]);
 
   return (
     <div className={styles.bg}>
+       <ToastContainer theme="dark" />
       {questions.map((question, index) => (
         <AddQuizQuestions
           questionNo={index}
           question={question}
           key={question._id}
+          setUpdatePage = {setUpdatePage}
         />
       ))}
       <div className={styles.addIcon}  onClick={()=>navigate('/add-qna')}>
