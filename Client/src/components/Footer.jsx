@@ -10,13 +10,13 @@ const Footer = () => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
-          justifyContent:"center",
-          gap:"20px",
+          justifyContent: "center",
+          gap: "20px",
           padding: "20px",
           backgroundColor: "rgb(15, 23, 42)",
           color: "white",
           marginTop: "auto",
-          height:"34vh"
+          height: "20vh",
         }}
       >
         <img

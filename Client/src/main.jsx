@@ -14,6 +14,7 @@ import AddQuiz from "./Pages/Quiz/AddQuiz.jsx";
 import AddQnA from "./Pages/AddQnA/AddQnA.jsx";
 import BlogDash from "./Components/BlogDash.jsx";
 import { UserProvider } from "./store/userContext.jsx";
+import ForgetPassword from "./Pages/PasswordMgmt/ForgetPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignUp />,
+  },
+  {
+    path: "/forgetPassword",
+    element: <ForgetPassword />
   },
   {
     path: "/",
