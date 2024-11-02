@@ -222,6 +222,14 @@ const Card = ({ isLogin, setPass, params, isSignUp }) => {
                 Create an account
               </Typography>
             </Link>
+            <Link className={styles.anchor} to="/forgetPassword">
+              <Typography
+                variant="body2"
+                styles={{ color: "#08457e", marginRight: "1rem" }}
+              >
+                Forgot Password?
+              </Typography>
+            </Link>
             {/* <a className={styles.anchor} href="/forget-pass">
                             <Typography variant='body2' styles={{ color: "#08457e", marginRight: '1rem' }}>Forgot Password?</Typography>
                         </a> */}
