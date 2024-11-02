@@ -74,9 +74,9 @@ export default function AddQnA() {
       className="bg-[#0c0b0b] mt-[5rem] min-h-[100vh] text-white flex flex-col 
     items-center "
     >
-      <div className="self-start ml-40">
+      <div className="self-start ml-[15vw] max-sm:ml-4">
         <button
-          className="py-2 px-4  rounded-lg flex items-center justify-center gap-1 mt-6 w-20 bg-gray-800 hover:bg-gray-700"
+          className="py-2 px-4 rounded-lg flex items-center justify-center gap-1 mt-6 w-20 bg-gray-800 hover:bg-gray-700"
           onClick={() => navigate("/add-quiz")}
         >
           <SlActionUndo /> Back

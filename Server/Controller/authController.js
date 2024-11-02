@@ -76,7 +76,7 @@ exports.forgotPassword = asyncErrorHandler(async (req, res, next) => {
 
         res.status(200).json({
             status: "success",
-            message: "Password reset link send to the user email!",
+            message: "OTP send to the user email!",
         });
     } catch (err) {
       console.log(err);
@@ -134,4 +134,20 @@ exports.resetPassword = asyncErrorHandler(async (req, res, next) => {
       status: "success",
       message: "Password reset successfully!"
     });
+})
+
+exports.logout = asyncErrorHandler(async (req, res, next) => {
+    res.clearCookie("jwt", {
+        httpOnly: true,
+        sameSite: "None",
+        secure: true,
+    });
+
+    res.clearCookie("token", {
+        httpOnly: true,
+        sameSite: "None",
+        secure: true,
+    });
+
+    return res.status(200).json({ message: 'Logged out successfully' });
 })

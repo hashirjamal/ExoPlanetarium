@@ -1,8 +1,8 @@
 import { HomePageContent } from "../utils/constants";
 import style from "../Pages/Home/Home.module.css";
 import { useNavigate } from "react-router-dom";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { useEffect } from "react";
 
 const HomePageContentComponent = () => {
@@ -39,10 +39,7 @@ const HomePageContentComponent = () => {
                 marginRight: index % 2 !== 0 ? "20px" : "0",
               }}
             >
-              <h2
-                data-aos="zoom-in"
-                className="font-bold text-xl md:text-4xl"
-              >
+              <h2 data-aos="zoom-in" className="font-bold text-xl md:text-4xl">
                 {item?.heading}
               </h2>
               <p
