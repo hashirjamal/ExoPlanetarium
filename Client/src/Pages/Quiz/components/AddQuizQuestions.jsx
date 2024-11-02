@@ -3,7 +3,7 @@ import styles from "./../AddQuiz.module.css";
 import ModalComponent from "./ModalComponent";
 
 
-const AddQuizQuestions = ({ questionNo, question }) => {
+const AddQuizQuestions = ({ questionNo, question ,setUpdatePage}) => {
   const [modalState,setModalState ] = useState(false);
  const [isUpdate,setIsUpdate] = useState(false);
  
@@ -27,7 +27,7 @@ const AddQuizQuestions = ({ questionNo, question }) => {
 
   return (
     <div className={styles.modalBox}>
-     { <ModalComponent  isUpdate={isUpdate} opener={modalState} setModalState={setModalState} question = {question} />}
+     { <ModalComponent setUpdatePage = {setUpdatePage} isUpdate={isUpdate} opener={modalState} setModalState={setModalState} question = {question} />}
       <h1 className={styles.heading}>Question No. {questionNo+1}</h1>
       <p className={styles.question}>{question.question}</p>
         <div className={styles.options}>

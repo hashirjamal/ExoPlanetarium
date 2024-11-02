@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import axios from "axios"
+import { toast } from "react-toastify";
 
 const style = {
   position: 'absolute',
@@ -18,7 +20,7 @@ const style = {
 
 };
 
-export default function ModalComponent({isUpdate,opener,setModalState,question}) {
+export default function ModalComponent({isUpdate,opener,setModalState,question,setUpdatePage}) {
   console.log("Hello",question)
   const [open, setOpen] = React.useState(opener);
   const handleOpen = () => setModalState(true);
@@ -36,7 +38,7 @@ export default function ModalComponent({isUpdate,opener,setModalState,question})
     })
   }
 
-  const handleUpdate = ()=>{
+  const handleUpdate =async ()=>{
   
     let status=true;
 
@@ -48,19 +50,50 @@ export default function ModalComponent({isUpdate,opener,setModalState,question})
     )
 
     if(!status || questionState.question.trim()=="" || !questionState.correctOption){
-      alert("Please feed all the required data");
+      toast.error("All fields must be filled.");
+    
       return;
     }
 
-  //muneer ne api ka format nahi dia abhi tak
-    console.log({...questionState})
+    try{
+      const res = await axios.patch(`http://localhost:3000/quiz/updateQuestion/${questionState._id}`,{
+        question: questionState.question,
+        options : [...questionState.options],
+        correctAnswer: questionState.correctOption
+      });
+      console.log(res.data);
+     toast.success("Question updated successfully");
+      setUpdatePage(p=>!p);
+    }
+    catch (e){
+      toast.error(`Error: ${e.message}`)
+      console.error(e);
+    }
+    finally{
+      handleClose()
+    }
+
+
+ 
   }
 
 
-  const handleDelete = ()=>{
+  const handleDelete = async ()=>{
 
     //muneer ne api ka format nahi dia abhi tak
-    console.log("Deleting ",questionState._id)
+    console.log("Deleting ",questionState._id);
+    try{
+      const res = await axios.delete(`http://localhost:3000/quiz/deleteQuestion/${questionState._id}`);
+      console.log(res.data);
+      toast.success("Question deleted successfully");
+      setUpdatePage(p=>!p);
+    }
+    catch (e){
+      toast.error(`Something went wrong ${e.message}`);
+      console.error(e);
+    }
+
+
     handleClose()
   }
 
@@ -101,7 +134,7 @@ export default function ModalComponent({isUpdate,opener,setModalState,question})
           <input
             type="text "
             placeholder="Enter your Question here"
-            className="p-2"
+            className="p-2 w-full"
             value={questionState.question}
             onChange={(e)=>{
               setQuestionState(
@@ -136,9 +169,10 @@ export default function ModalComponent({isUpdate,opener,setModalState,question})
                 />
                 <input
                   type="text"
-                  className=" outline-white border-white"
+                  className=" outline-white border-white w-full"
                   placeholder="Option 1"
                   value={v}
+
                   onChange={(e)=>handleOptionChange(e.target.value,i)}
                 />
               </nav>
@@ -153,7 +187,7 @@ export default function ModalComponent({isUpdate,opener,setModalState,question})
               className="py-2 px-4  rounded-lg mt-6 w-20 bg-gray-800 hover:bg-gray-700"
               onClick={handleUpdate}
               >
-              Add
+              Update
             </button>
             <button
               className="py-2 px-4  rounded-lg mt-6 w-20 ml-4 bg-gray-800 hover:bg-gray-700"
