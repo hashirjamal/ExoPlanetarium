@@ -80,7 +80,7 @@ const Questions = ({
     fontFamily: "'Lato', sans-serif",
     backgroundColor: "rgba(255,255,255,0.4)",
     borderRadius: "5px",
-    fontSize: "1.3rem",
+    fontSize: "1.2rem",
     pointerEvents: clicked ? "none" : "auto",
     transition: "all 0.3s",
     "&:hover": {
