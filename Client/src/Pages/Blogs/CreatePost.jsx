@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Alert from "@mui/material/Alert";
@@ -149,7 +149,7 @@ function CreatePost() {
                         className="text-center flex flex-col gap-4"
                         onSubmit={handleSubmitForm}
                     >
-                        <div className="flex flex-col sm:flex-row justify-between gap-4 color-white">
+                        <div className="flex flex-col md:flex-row justify-between gap-4 color-white">
                             <TextField
                                 sx={{
                                     "& .MuiOutlinedInput-root": {
@@ -254,9 +254,9 @@ function CreatePost() {
                                 variant="outlined"
                                 className="w-40 h-12"
                                 sx={{
-                                  color: "white",
-                                  outlineColor: "#81b0bd",
-                                  borderColor: "#81b0bd"
+                                    color: "white",
+                                    outlineColor: "#81b0bd",
+                                    borderColor: "#81b0bd",
                                 }}
                                 disabled={ImageFileUploadProgress}
                             >
