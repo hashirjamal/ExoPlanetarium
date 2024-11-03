@@ -87,7 +87,7 @@ export default function AddQnA() {
       <div className="px-6 w-full sm:w-9/12 py-10">
         <nav className="flex items-centers">
           <p className="py-3 font-semibold">Q.</p>
-          <inputgit
+          <input
             type="text "
             placeholder="Enter your Question here"
             className="p-2"
