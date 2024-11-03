@@ -51,7 +51,7 @@ function BlogPage() {
           <h1 className="font-bold  text-5xl sm:text-7xl text-white">
             {postData.title}
           </h1>
-          <p className="text-md mt-3 text-gray-300">{postData.description}</p>
+          <p className="text-md mt-3 text-gray-100">{postData.description}</p>
         </div>
       </motion.div>
       <motion.div
