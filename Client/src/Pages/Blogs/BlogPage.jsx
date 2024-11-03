@@ -54,7 +54,7 @@ function BlogPage() {
                     <h1 className="font-bold  text-5xl sm:text-7xl text-white">
                         {postData.title}
                     </h1>
-                    <p className="text-md mt-3 text-gray-300">
+                    <p className="text-md mt-3 text-gray-100">
                         {postData.description}
                     </p>
                 </div>
@@ -64,44 +64,38 @@ function BlogPage() {
                 initial="hidden"
                 whileInView={"show"}
                 viewport={{ once: false, amount: 0.1 }}
-                className="max-w-6xl mx-auto p-5 my-14 "
+                className="p-5 py-14 flex justify-center flex-col bg-slate-300 overflow-hidden"
             >
                 <h1 className="text-6xl font-bold text-gray-950 mt-7">
                     Overview
                 </h1>
                 <div
-                    className="p-3 max-w-7xl mx-auto w-full text-gray-800 text-xl"
+                    className="p-3 flex justify-center flex-col w-full text-gray-800 text-xl"
                     dangerouslySetInnerHTML={{
                         __html: postData && postData.content,
                     }}
                 ></div>
             </motion.div>
-            <motion.div
-                variants={fadeIn("right", 0.1)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.3 }}
-            >
-                <div className="h-auto bg-gray-200 flex lg:flex-row justify-center items-center flex-col gap-4 py-28">
-                    <div className="px-10">
-                        <h1 className="text-6xl md:text-8xl font-bold text-gray-900">
-                            Exoplanet Types
-                        </h1>
-                        <p className="text-lg my-8">
-                            So far scientists have categorized exoplanets into
-                            the following types: Gas giant, Neptunian,
-                            super-Earth and terrestrial with subcategories like
-                            mini-Neptunes within those groups.
-                        </p>
-                    </div>
-                    <div className="">
-                        <img
-                            className="object-cover w-full min-h-48"
-                            src="https://science.nasa.gov/wp-content/uploads/2023/06/1795-1585-what-is-exoplanet-banner-jpg.webp?w=1280&format=webp"
-                        />
-                    </div>
+
+            <div className="h-auto bg-gray-200 flex lg:flex-row justify-center items-center flex-col gap-4 py-28">
+                <div className="px-10">
+                    <h1 className="text-6xl md:text-8xl font-bold text-gray-900">
+                        Exoplanet Types
+                    </h1>
+                    <p className="text-lg my-8">
+                        So far scientists have categorized exoplanets into the
+                        following types: Gas giant, Neptunian, super-Earth and
+                        terrestrial with subcategories like mini-Neptunes within
+                        those groups.
+                    </p>
                 </div>
-            </motion.div>
+                <div className="">
+                    <img
+                        className="object-cover w-full min-h-48"
+                        src="https://science.nasa.gov/wp-content/uploads/2023/06/1795-1585-what-is-exoplanet-banner-jpg.webp?w=1280&format=webp"
+                    />
+                </div>
+            </div>
         </div>
     );
 }
