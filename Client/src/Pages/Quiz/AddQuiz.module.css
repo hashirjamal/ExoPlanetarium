@@ -9,7 +9,6 @@
     max-width: 70%;
     min-height: 20vh;
     padding: 20px 30px;
-    /* margin-top: 120px; */
     z-index: 1;
 }
 
@@ -44,7 +43,7 @@
     background-color: #F5F5F5;
     min-height: 60px;
     min-width: 60px;
-    border-radius: 50%; /* Changed to make it circular */
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,20 +51,28 @@
     bottom: 30px;
     right: 100px;
     font-size: 3rem;
+    z-index: 1000;
     color: rgb(0, 0, 137);
-    box-shadow: 3px 3px 15px 0 rgba(0, 0, 140, 0.5); /* Adjusted for a more pronounced glow effect */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for effects */
+    box-shadow: 3px 3px 15px 0 rgba(0, 0, 140, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .addIcon:hover {
-    transform: scale(1.05); /* Slightly enlarges on hover */
-    box-shadow: 5px 5px 20px 0 rgba(0, 0, 140, 0.7); /* Increases shadow intensity */
-    cursor: pointer; /* Adds a pointer to indicate it's clickable */
+    transform: scale(1.05);
+    box-shadow: 5px 5px 20px 0 rgba(0, 0, 140, 0.7);
+    cursor: pointer;
     background-color: rgb(0, 0, 137);
     color: #F5F5F5;
 }
 
 .addIcon:active {
-    transform: scale(0.95); /* Slightly shrinks when clicked */
-    box-shadow: 2px 2px 10px 0 rgba(0, 0, 140, 0.5); /* Subtle shadow on click */
+    transform: scale(0.95);
+    box-shadow: 2px 2px 10px 0 rgba(0, 0, 140, 0.5);
 }
+
+@media only screen and (max-width: 1024px) {
+    .addIcon {
+        right: 0;
+        margin-right: 1rem;
+    }
+  }

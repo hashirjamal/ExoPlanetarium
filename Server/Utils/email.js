@@ -71,21 +71,26 @@ function sendEmail({ email, resetToken }) {
         .footer p {
             margin: 5px 0;
         }
+        .spin {
+  animation: spin 3s linear infinite;
+  height:4vh;
+  display: inline;
+}
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>StreamEase</h1>
+            <h1>ExoPlanetarium</h1>
         </div>
         <div class="content">
             <p>Hi,</p>
             <p>Thank you for choosing ExoPlanetarium. Use the following OTP to complete your password recovery procedure. OTP is valid for 5 minutes:</p>
             <div class="otp">${resetToken}</div>
-            <p>Regards,<br />StreamEase</p>
+            <p>Regards,<br />BroCode</p>
         </div>
         <div class="footer">
-            <p>ExoPlanetarium Corp.</p>
+            <p>BroCode Corporation LTD.</p>
             <p>NED University of Engineering and Technology</p>
         </div>
     </div>
