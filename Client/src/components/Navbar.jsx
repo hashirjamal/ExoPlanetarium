@@ -26,6 +26,7 @@ const Navbar = () => {
     try {
         await axios.post("http://localhost:3000/api/auth/logout", {}, { withCredentials: true });
         setUser(null);
+        localStorage.removeItem("user");
         navigate("/");
     } catch (error) {
         console.error("Logout failed", error);
@@ -138,7 +139,7 @@ const Navbar = () => {
             Planetarium
           </Typography>
 
-          <div className="hidden md:flex gap-4">
+          <div className="hidden lg:flex gap-4">
             <Button
               color="inherit"
               component={Link}
@@ -146,17 +147,23 @@ const Navbar = () => {
               sx={{
                 color: "white",
                 "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+                display: {
+                  xs: "none", lg: "block"
+                }
               }}
             >
               Home
             </Button>
-            <Button
+            <Button 
               color="inherit"
               component={Link}
               to="/exoplanet-quiz"
               sx={{
                 color: "white",
                 "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+                display: {
+                  xs: "none", lg: "block"
+                }
               }}
             >
               Quiz
@@ -168,6 +175,9 @@ const Navbar = () => {
               sx={{
                 color: "white",
                 "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+                display: {
+                  xs: "none", lg: "block"
+                }
               }}
             >
               Blogs
@@ -180,6 +190,9 @@ const Navbar = () => {
                 sx={{
                   color: "white",
                   "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+                  display: {
+                    xs: "none", lg: "block"
+                  }
                 }}
               >
                 Create Post
@@ -193,6 +206,9 @@ const Navbar = () => {
                 sx={{
                   color: "white",
                   "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+                  display: {
+                    xs: "none", lg: "block"
+                  }
                 }}
               >
                 Add Question
@@ -205,6 +221,9 @@ const Navbar = () => {
               sx={{
                 color: "white",
                 "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+                display: {
+                  xs: "none", lg: "block"
+                }
               }}
             >
               Chatbot
@@ -215,6 +234,9 @@ const Navbar = () => {
               sx={{
                 color: "white",
                 "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.2)" },
+                display: {
+                  xs: "none", lg: "block"
+                }
               }}
               onClick={handleLogout}
             >
@@ -227,7 +249,7 @@ const Navbar = () => {
             color="inherit"
             aria-label="menu"
             sx={{
-              display: { xs: "block", md: "none" },
+              display: { xs: "block", lg: "none" },
             }}
             onClick={toggleDrawer(true)}
           >
