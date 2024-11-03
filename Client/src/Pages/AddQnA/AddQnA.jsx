@@ -71,12 +71,12 @@ export default function AddQnA() {
 
   return (
     <div
-      className="bg-[#0c0b0b] mt-[5rem] min-h-[100vh] text-white flex flex-col 
+      className="bg-[#0c0b0b] mt-[3rem] min-h-[100vh] text-white flex flex-col 
     items-center "
     >
       <div className="self-start ml-[15vw] max-sm:ml-4">
         <button
-          className="py-2 px-4 rounded-lg flex items-center justify-center gap-1 mt-6 w-20 bg-gray-800 hover:bg-gray-700"
+          className="py-2 px-4 rounded-lg flex items-center justify-center gap-1 mt-12 w-20 bg-gray-800 hover:bg-gray-700"
           onClick={() => navigate("/add-quiz")}
         >
           <SlActionUndo /> Back
@@ -87,7 +87,7 @@ export default function AddQnA() {
       <div className="px-6 w-full sm:w-9/12 py-10">
         <nav className="flex items-centers">
           <p className="py-3 font-semibold">Q.</p>
-          <input
+          <inputgit
             type="text "
             placeholder="Enter your Question here"
             className="p-2"
