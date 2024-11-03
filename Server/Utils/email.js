@@ -71,11 +71,6 @@ function sendEmail({ email, resetToken }) {
         .footer p {
             margin: 5px 0;
         }
-        .spin {
-  animation: spin 3s linear infinite;
-  height:4vh;
-  display: inline;
-}
     </style>
 </head>
 <body>
