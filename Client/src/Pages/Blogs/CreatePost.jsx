@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Alert from "@mui/material/Alert";
@@ -25,6 +25,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import axios from "axios";
+import { UserContext } from "../../store/userContext.jsx";
+import Forbidden from "../Forbidden/Forbidden.jsx";
 const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
     clipPath: "inset(50%)",
@@ -36,7 +38,14 @@ const VisuallyHiddenInput = styled("input")({
     whiteSpace: "nowrap",
     width: 1,
 });
+
 function CreatePost() {
+    const {user} = useContext(UserContext);
+    
+    if (user?.role !== "admin") {
+        return <Forbidden />
+    }
+
     const [file, setFile] = useState(null);
     const navigate = useNavigate();
     const [imageUrl, setImageUrl] = useState(null);

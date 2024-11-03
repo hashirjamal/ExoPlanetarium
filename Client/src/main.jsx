@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -15,6 +14,7 @@ import AddQnA from "./Pages/AddQnA/AddQnA.jsx";
 import BlogDash from "./Components/BlogDash.jsx";
 import { UserProvider } from "./store/userContext.jsx";
 import ForgetPassword from "./Pages/PasswordMgmt/ForgetPassword.jsx";
+import NotFound from "./Pages/Forbidden/NotFound.jsx";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +65,10 @@ const router = createBrowserRouter([
         path: "/create-post",
         element: <CreatePost />,
       },
+      {
+        path: "*",
+        element: <NotFound />
+      }
     ],
   },
 ]);
