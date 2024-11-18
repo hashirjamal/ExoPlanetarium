@@ -21,7 +21,12 @@ export default function Chatbot() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if(!userPrompt){
+        if(isLoading){
+            toast.error("Wait for the previous prompt to be answered!");
+            return;
+        }
+
+        if(!userPrompt || !userPrompt.trim()){
             toast.error("Empty messages are not allowed!");
             return;
         }
