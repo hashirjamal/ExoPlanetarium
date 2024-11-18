@@ -25,6 +25,26 @@
     transform: scale(0);
     animation: scaleUp 1s forwards;
 }
+@media screen and (max-width: 600px){
+    .modalBox {
+        margin-top: 300px;
+        padding: 20px 30px;
+        /* max-height: 100vh; */
+        min-width: 90%;
+        max-width: 90%;
+    }
+    
+}
+@media screen and (max-width: 1000px) and (min-width: 600px){
+    .modalBox {
+        margin-top: 200px;
+        padding: 20px 30px;
+        /* max-height: 100vh; */
+        min-width: 90%;
+        max-width: 90%;
+    }
+    
+}
 @media screen and (max-width: 576px){
     .modalBox {
         margin-top: 300px;
